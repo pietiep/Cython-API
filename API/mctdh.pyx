@@ -9,10 +9,12 @@ cdef extern from "../MCTDH/ControlParameters.h":
         ControlParameters() except +
         void Initialize(string, ostream&)
 
-#cdef extern from "../MCTDH/mctdhBasis.h":
-#    cdef cppclass mctdhBasis:
-#        mctdhBasis() except +
-#        void Initialize(string, ControlParameters&)
+cdef ControlParameters config
+
+cdef extern from "../MCTDH/mctdhBasis.h":
+    cdef cppclass mctdhBasis:
+        mctdhBasis() except +
+        void Initialize(string, ControlParameters&)
 
 cdef class PyControlParameters:
     cdef ControlParameters *thisptr
@@ -23,4 +25,11 @@ cdef class PyControlParameters:
     def PyInitialize(self, a):
             self.thisptr.Initialize(a, cout)
 
-
+cdef class PymctdhBasis:
+  cdef mctdhBasis *thisptr
+  def __cinit__(self):
+      self.thisptr = new mctdhBasis()
+  def __dealloc__(self):
+      del self.thisptr
+  def PyInitialize(self, filename):
+      self.thisptr.Initialize(filename, config)
