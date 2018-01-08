@@ -20,7 +20,7 @@ cdef extern from "../MCTDH/mctdhBasis.h":
         void Initialize(string, ControlParameters&)
         double RegularizationDensity()
         size_t nPhysNodes()
-        mctdhNode& MCTDHNode(size_t i)
+        mctdhNode MCTDHNode(size_t i)
 
 cdef extern from "../MCTDH/mctdhNode.h":
     cdef cppclass mctdhNode:
@@ -34,12 +34,15 @@ cdef ControlParameters PyControlParameters(string para):
     config.Initialize(para, cout)
     return config
 
+cdef mctdhBasis* PymctdhBasis_cfun(string filename, ControlParameters config):
+    cdef mctdhBasis* basis
+    basis.Initialize(filename, config)
+    return basis
 
-cdef void PymctdhNode(para, filename, size_t i):
-      cdef mctdhNode & node
+cdef void PymctdhNode(para, filename, size_t i, mctdhNode node):
       config.Initialize(para, cout)
       basis.Initialize(filename, config)
-      (&node)[0] = basis.MCTDHNode(i)
+      node = basis.MCTDHNode(i)
 
 cdef class PymctdhBasis:
   cdef mctdhBasis *thisptr
@@ -54,6 +57,19 @@ cdef class PymctdhBasis:
       return self.thisptr.RegularizationDensity()
   cpdef PynPhysNodes(self):
       return self.thisptr.nPhysNodes()
-#  cpdef PyPymctdhNode(para, filename, size_t i):
-#      cdef mctdhNode unique_ptr[node]
-#      PymctdhNode(para, filename, i, unique_ptr[node])
+#  cdef const mctdhNode& PymctdhNode(self, size_t i):
+#      pass
+#      cdef const mctdhNode& node
+#      node = self.thisptr.MCTDHNode(i)
+
+#cdef class PymctdhNode:
+#  cdef mctdhNode *thisptr
+#  def __cinit__(self):
+#      self.thisptr = new mctdhNode()
+#  def __dealloc__(self):
+#      del self.thisptr
+#  cpdef PyInitialize(self, filename, para):
+#      config = PyControlParameters(para)
+#      basis = PymctdhBasis_cfun(filename, config)
+#      cdef const mctdhNode* node
+#      node = basis.MCTDHNode(1);
