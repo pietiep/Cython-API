@@ -14,9 +14,8 @@ except OSError:
     pass
 
 ext_modules = [Extension("testclass",
-                     ["testclass.pyx"],
-                     language='c++',
-                     extra_objects=["libtest.a"]
+                     ["testclass.pyx", "class1.cpp", "class2.cpp"],
+                     language='c++'
                      )]
 
 setup(
