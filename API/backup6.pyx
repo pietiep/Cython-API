@@ -37,36 +37,20 @@ cdef class PyControlParameters:
             self.control_ptr.Initialize(a, cout)
     def PyEps_CMF(self):
         return self.control_ptr.Eps_CMF()
-    def PyRegularization(self):
-        return self.control_ptr.Regularization()
-
-cdef ControlParameters * PyToCpp(PyControlParameters py_obj):
-    return py_obj.control_ptr
 
 cdef class PymctdhBasis:
   cdef mctdhBasis *basis_ptr
+  cdef ControlParameters *config_ptr
   def __cinit__(self):
       self.basis_ptr = new mctdhBasis()
+      self.config_ptr = new ControlParameters()
   def __dealloc__(self):
       del self.basis_ptr
-  cpdef PyInitialize(self, filename, py_config_obj):
-      cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
-      self.basis_ptr.Initialize(filename, new_config_ptr[0])
+      del self.config_ptr
+  cpdef PyInitialize(self, filename, para):
+      self.config_ptr.Initialize(para, cout)
+      self.basis_ptr.Initialize(filename, self.config_ptr[0])
   cpdef PyRegularizationDensity(self):
       return self.basis_ptr.RegularizationDensity()
   cpdef PynPhysNodes(self):
       return self.basis_ptr.nPhysNodes()
-
-cdef mctdhBasis * PyToCpp2(PymctdhBasis py_obj):
-    return py_obj.basis_ptr
-
-cdef class PyMctdhNode:
-  cdef mctdhNode * node_ptr
-  def __cinit__(self):
-      self.node_ptr = new mctdhNode()
-#  def __dealloc__(self):
-#      del self.node_ptr
-  cpdef PyInitialize(py_basis_obj):
-      cdef mctdhBasis * new_basis_ptr = PyToCpp2(py_basis_obj)
-      cdef const mctdhNode * new_node_ptr
-      new_node_ptr = &(new_basis_ptr.MCTDHNode(1))
