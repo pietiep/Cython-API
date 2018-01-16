@@ -20,7 +20,6 @@ cdef extern from "../MCTDH/mctdhBasis.h":
         double RegularizationDensity()
         size_t nPhysNodes()
         const mctdhNode & MCTDHNode(size_t i)
-        size_t nmctdhNodes()
 
 cdef extern from "../MCTDH/mctdhNode.h":
     cdef cppclass mctdhNode:
@@ -32,7 +31,7 @@ cdef extern from "../MCTDH/mctdhNode.h":
         bool IsBottomlayer()
         bool IsToplayer()
         const mctdhNode & Up()
-        const mctdhNode & Down(size_t i)
+        const mctdhNode & down()
         int nChildren()
         int Address()
 
@@ -40,67 +39,47 @@ cdef extern from "../QDlib/TensorDim.h":
     cdef cppclass TensorDim:
         TensorDim() except +
 
-cdef class controlParameters:
+cdef class PyControlParameters:
     cdef ControlParameters *control_ptr
     def __cinit__(self):
         self.control_ptr = new ControlParameters()
     def __dealloc__(self):
         del self.control_ptr
-    def initialize(self, a):
+    def PyInitialize(self, a):
             self.control_ptr.Initialize(a, cout)
-    def eps_CMF(self):
+    def PyEps_CMF(self):
         return self.control_ptr.Eps_CMF()
-    def regularization(self):
+    def PyRegularization(self):
         return self.control_ptr.Regularization()
 
-cdef ControlParameters * PyToCpp(controlParameters py_obj):
+cdef ControlParameters * PyToCpp(PyControlParameters py_obj):
     return py_obj.control_ptr
 
-cdef class MctdhBasis:
+cdef class PymctdhBasis:
   cdef mctdhBasis *basis_ptr
   def __cinit__(self):
       self.basis_ptr = new mctdhBasis()
   def __dealloc__(self):
       del self.basis_ptr
-  def initialize(self, filename, py_config_obj):
+  def PyInitialize(self, filename, py_config_obj):
       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
       self.basis_ptr.Initialize(filename, new_config_ptr[0])
-  def regularizationDensity(self):
+  def PyRegularizationDensity(self):
       return self.basis_ptr.RegularizationDensity()
-  def NPhysNodes(self):
+  def PynPhysNodes(self):
       return self.basis_ptr.nPhysNodes()
-  cpdef MctdhNode PyMCTDHNode(self, i):
+  cpdef PyMctdhNode PyMCTDHNode(self, i):
       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
       return PyMctdhNode_factory(node)
-  def NmctdhNodes(self):
-      return self.basis_ptr.nmctdhNodes()
 
 cdef object PyMctdhNode_factory(const mctdhNode *ptr):
-      cdef MctdhNode py_obj = MctdhNode()
+      cdef PyMctdhNode py_obj = PyMctdhNode()
       py_obj.node_ptr = ptr
       return py_obj
 
-cdef class MctdhNode:
+cdef class PyMctdhNode:
   cdef const mctdhNode * node_ptr
-  def Info(self):
+  def PyInfo(self):
       self.node_ptr.info(cout)
-  def Bottomlayer(self):
+  def PyIsBottomlayer(self):
       return self.node_ptr.IsBottomlayer()
-  def Nnodes(self):
-      return self.node_ptr.nNodes()
-  def NmctdhNodes(self):
-      return self.node_ptr.nmctdhNodes()
-  def NPhysNodes(self):
-      return self.node_ptr.nPhysNodes()
-  def Toplayer(self):
-      return self.node_ptr.IsToplayer()
-  def up(self):
-      cdef const mctdhNode * node_up = &(self.node_ptr.Up())
-      return PyMctdhNode_factory(node_up)
-  def down(self, i):
-      cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
-      return PyMctdhNode_factory(node_down)
-  def NChildren(self):
-      return self.node_ptr.nChildren()
-  def address(self):
-      return self.node_ptr.Address()

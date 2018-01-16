@@ -1,10 +1,25 @@
 # coding: utf-8
-get_ipython().magic(u'll ')
 import mctdh
-config = mctdh.PyControlParameters()
-config.PyInitialize('mctdh.config')
-basis = mctdh.PymctdhBasis()
-basis.PyInitialize('CH3g1.txt', config)
-config.PyEps_CMF()
-basis.PyRegularizationDensity()
-get_ipython().magic(u'save test_skript.py 1-9')
+config = mctdh.controlParameters()
+config.initialize('mctdh.config')
+basis = mctdh.MctdhBasis()
+basis.initialize('CH3g1.txt', config)
+node = mctdh.MctdhNode()
+
+bottom_list = []
+
+for i in range(basis.NmctdhNodes()):
+    node = basis.PyMCTDHNode(i)
+    if node.Bottomlayer() == True:
+        bottom_list.append(i)
+
+print bottom_list
+
+def nlayer(i):
+    node = basis.PyMCTDHNode(i)
+    if node.Toplayer() == False:
+        return node.up().address()
+
+nlayer(0)
+#for b_ in bottom_list:
+#    print nlayer(b_)

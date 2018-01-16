@@ -544,6 +544,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "../MCTDH/ControlParameters.h"
 #include "../MCTDH/mctdhBasis.h"
 #include "../MCTDH/mctdhNode.h"
+#include "../QDlib/TensorDim.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -752,80 +753,63 @@ static const char *__pyx_f[] = {
 };
 
 /*--- Type declarations ---*/
-struct __pyx_obj_5mctdh_PyControlParameters;
-struct __pyx_obj_5mctdh_PymctdhBasis;
-struct __pyx_obj_5mctdh_PyMctdhNode;
+struct __pyx_obj_5mctdh_controlParameters;
+struct __pyx_obj_5mctdh_MctdhBasis;
+struct __pyx_obj_5mctdh_MctdhNode;
 
-/* "mctdh.pyx":30
- *         bool IsBottomlayer()
+/* "mctdh.pyx":43
+ *         TensorDim() except +
  * 
- * cdef class PyControlParameters:             # <<<<<<<<<<<<<<
+ * cdef class controlParameters:             # <<<<<<<<<<<<<<
  *     cdef ControlParameters *control_ptr
  *     def __cinit__(self):
  */
-struct __pyx_obj_5mctdh_PyControlParameters {
+struct __pyx_obj_5mctdh_controlParameters {
   PyObject_HEAD
   ControlParameters *control_ptr;
 };
 
 
-/* "mctdh.pyx":46
+/* "mctdh.pyx":59
  *     return py_obj.control_ptr
  * 
- * cdef class PymctdhBasis:             # <<<<<<<<<<<<<<
+ * cdef class MctdhBasis:             # <<<<<<<<<<<<<<
  *   cdef mctdhBasis *basis_ptr
  *   def __cinit__(self):
  */
-struct __pyx_obj_5mctdh_PymctdhBasis {
+struct __pyx_obj_5mctdh_MctdhBasis {
   PyObject_HEAD
-  struct __pyx_vtabstruct_5mctdh_PymctdhBasis *__pyx_vtab;
+  struct __pyx_vtabstruct_5mctdh_MctdhBasis *__pyx_vtab;
   mctdhBasis *basis_ptr;
 };
 
 
-/* "mctdh.pyx":63
- *     return py_obj.basis_ptr
+/* "mctdh.pyx":83
+ *       return py_obj
  * 
- * cdef class PyMctdhNode:             # <<<<<<<<<<<<<<
- *   cdef mctdhNode * node_ptr
- *   def __cinit__(self):
+ * cdef class MctdhNode:             # <<<<<<<<<<<<<<
+ *   cdef const mctdhNode * node_ptr
+ *   def Info(self):
  */
-struct __pyx_obj_5mctdh_PyMctdhNode {
+struct __pyx_obj_5mctdh_MctdhNode {
   PyObject_HEAD
-  struct __pyx_vtabstruct_5mctdh_PyMctdhNode *__pyx_vtab;
-  mctdhNode *node_ptr;
+  mctdhNode const *node_ptr;
 };
 
 
 
-/* "mctdh.pyx":46
+/* "mctdh.pyx":59
  *     return py_obj.control_ptr
  * 
- * cdef class PymctdhBasis:             # <<<<<<<<<<<<<<
+ * cdef class MctdhBasis:             # <<<<<<<<<<<<<<
  *   cdef mctdhBasis *basis_ptr
  *   def __cinit__(self):
  */
 
-struct __pyx_vtabstruct_5mctdh_PymctdhBasis {
-  PyObject *(*PyInitialize)(struct __pyx_obj_5mctdh_PymctdhBasis *, PyObject *, PyObject *, int __pyx_skip_dispatch);
-  PyObject *(*PyRegularizationDensity)(struct __pyx_obj_5mctdh_PymctdhBasis *, int __pyx_skip_dispatch);
-  PyObject *(*PynPhysNodes)(struct __pyx_obj_5mctdh_PymctdhBasis *, int __pyx_skip_dispatch);
+struct __pyx_vtabstruct_5mctdh_MctdhBasis {
+  struct __pyx_obj_5mctdh_MctdhNode *(*PyMCTDHNode)(struct __pyx_obj_5mctdh_MctdhBasis *, PyObject *, int __pyx_skip_dispatch);
 };
-static struct __pyx_vtabstruct_5mctdh_PymctdhBasis *__pyx_vtabptr_5mctdh_PymctdhBasis;
-
-
-/* "mctdh.pyx":63
- *     return py_obj.basis_ptr
- * 
- * cdef class PyMctdhNode:             # <<<<<<<<<<<<<<
- *   cdef mctdhNode * node_ptr
- *   def __cinit__(self):
- */
-
-struct __pyx_vtabstruct_5mctdh_PyMctdhNode {
-  PyObject *(*PyInitialize)(struct __pyx_obj_5mctdh_PyMctdhNode *, int __pyx_skip_dispatch);
-};
-static struct __pyx_vtabstruct_5mctdh_PyMctdhNode *__pyx_vtabptr_5mctdh_PyMctdhNode;
+static struct __pyx_vtabstruct_5mctdh_MctdhBasis *__pyx_vtabptr_5mctdh_MctdhBasis;
 
 /* --- Runtime support code (head) --- */
 /* Refnanny.proto */
@@ -963,6 +947,24 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
+/* RaiseDoubleKeywords.proto */
+static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
+
+/* ParseKeywords.proto */
+static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
+    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
+    const char* function_name);
+
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
 #define __Pyx_PyFunction_FastCall(func, args, nargs)\
@@ -974,24 +976,6 @@ static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, 
 #endif
 #endif
 
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
-#endif
-
-/* ExtTypeTest.proto */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
-
-/* RaiseDoubleKeywords.proto */
-static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
-
-/* ParseKeywords.proto */
-static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
-    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
-    const char* function_name);
-
 /* PyObjectCallMethO.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
@@ -999,13 +983,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 
 /* PyObjectCallOneArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
-
-/* PyObjectCallNoArg.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
-#else
-#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
 
 /* SetupReduce.proto */
 static int __Pyx_setup_reduce(PyObject* type_obj);
@@ -1082,6 +1059,12 @@ static void __Pyx_CppExn2PyErr() {
 #endif
 
 /* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
+/* CIntFromPy.proto */
+static CYTHON_INLINE size_t __Pyx_PyInt_As_size_t(PyObject *);
+
+/* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 /* CIntFromPy.proto */
@@ -1108,10 +1091,7 @@ static int __Pyx_check_binary_version(void);
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PyInitialize(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PyRegularizationDensity(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
-static PyObject *__pyx_f_5mctdh_11PyMctdhNode_PyInitialize(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_py_basis_obj, int __pyx_skip_dispatch); /* proto*/
+static struct __pyx_obj_5mctdh_MctdhNode *__pyx_f_5mctdh_10MctdhBasis_PyMCTDHNode(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_i, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from 'libc.string' */
 
@@ -1120,11 +1100,11 @@ static PyObject *__pyx_f_5mctdh_11PyMctdhNode_PyInitialize(struct __pyx_obj_5mct
 /* Module declarations from 'libcpp' */
 
 /* Module declarations from 'mctdh' */
-static PyTypeObject *__pyx_ptype_5mctdh_PyControlParameters = 0;
-static PyTypeObject *__pyx_ptype_5mctdh_PymctdhBasis = 0;
-static PyTypeObject *__pyx_ptype_5mctdh_PyMctdhNode = 0;
-static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_PyControlParameters *); /*proto*/
-static mctdhBasis *__pyx_f_5mctdh_PyToCpp2(struct __pyx_obj_5mctdh_PymctdhBasis *); /*proto*/
+static PyTypeObject *__pyx_ptype_5mctdh_controlParameters = 0;
+static PyTypeObject *__pyx_ptype_5mctdh_MctdhBasis = 0;
+static PyTypeObject *__pyx_ptype_5mctdh_MctdhNode = 0;
+static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_controlParameters *); /*proto*/
+static PyObject *__pyx_f_5mctdh_PyMctdhNode_factory(mctdhNode const *); /*proto*/
 static std::string __pyx_convert_string_from_py_std__in_string(PyObject *); /*proto*/
 #define __Pyx_MODULE_NAME "mctdh"
 extern int __pyx_module_is_main_mctdh;
@@ -1142,17 +1122,14 @@ static const char __pyx_k_setstate[] = "__setstate__";
 static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
-static const char __pyx_k_PyInitialize[] = "PyInitialize";
-static const char __pyx_k_PynPhysNodes[] = "PynPhysNodes";
+static const char __pyx_k_PyMCTDHNode[] = "PyMCTDHNode";
 static const char __pyx_k_py_config_obj[] = "py_config_obj";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_PyRegularizationDensity[] = "PyRegularizationDensity";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
-static PyObject *__pyx_n_s_PyInitialize;
-static PyObject *__pyx_n_s_PyRegularizationDensity;
-static PyObject *__pyx_n_s_PynPhysNodes;
+static const char __pyx_k_self_node_ptr_cannot_be_converte[] = "self.node_ptr cannot be converted to a Python object for pickling";
+static PyObject *__pyx_n_s_PyMCTDHNode;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_filename;
@@ -1165,30 +1142,41 @@ static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
+static PyObject *__pyx_kp_s_self_node_ptr_cannot_be_converte;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_test;
-static int __pyx_pf_5mctdh_19PyControlParameters___cinit__(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self); /* proto */
-static void __pyx_pf_5mctdh_19PyControlParameters_2__dealloc__(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_4PyInitialize(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self, PyObject *__pyx_v_a); /* proto */
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_6PyEps_CMF(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_8PyRegularization(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_5mctdh_12PymctdhBasis___cinit__(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self); /* proto */
-static void __pyx_pf_5mctdh_12PymctdhBasis_2__dealloc__(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_4PyInitialize(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj); /* proto */
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_6PyRegularizationDensity(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_8PynPhysNodes(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_5mctdh_11PyMctdhNode___cinit__(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_2PyInitialize(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_py_basis_obj); /* proto */
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_5mctdh_PyControlParameters(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_5mctdh_PymctdhBasis(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_5mctdh_PyMctdhNode(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static int __pyx_pf_5mctdh_17controlParameters___cinit__(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self); /* proto */
+static void __pyx_pf_5mctdh_17controlParameters_2__dealloc__(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_17controlParameters_4initialize(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self, PyObject *__pyx_v_a); /* proto */
+static PyObject *__pyx_pf_5mctdh_17controlParameters_6eps_CMF(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_17controlParameters_8regularization(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_17controlParameters_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_17controlParameters_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_5mctdh_10MctdhBasis___cinit__(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static void __pyx_pf_5mctdh_10MctdhBasis_2__dealloc__(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_4initialize(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_6regularizationDensity(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_8NPhysNodes(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_10PyMCTDHNode(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_i); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_12NmctdhNodes(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_14__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_16__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_Info(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_2Bottomlayer(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_4Nnodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_6NmctdhNodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_8NPhysNodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_10Toplayer(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_12up(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_14down(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self, PyObject *__pyx_v_i); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_16NChildren(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_18address(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_20__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_22__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_tp_new_5mctdh_controlParameters(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_5mctdh_MctdhBasis(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_5mctdh_MctdhNode(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
@@ -1196,8 +1184,8 @@ static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 
-/* "mctdh.pyx":32
- * cdef class PyControlParameters:
+/* "mctdh.pyx":45
+ * cdef class controlParameters:
  *     cdef ControlParameters *control_ptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.control_ptr = new ControlParameters()
@@ -1205,28 +1193,28 @@ static PyObject *__pyx_tuple__6;
  */
 
 /* Python wrapper */
-static int __pyx_pw_5mctdh_19PyControlParameters_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_5mctdh_19PyControlParameters_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_5mctdh_17controlParameters_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_5mctdh_17controlParameters_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
     __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return -1;}
   if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__cinit__", 0))) return -1;
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters___cinit__(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self));
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters___cinit__(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_5mctdh_19PyControlParameters___cinit__(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self) {
+static int __pyx_pf_5mctdh_17controlParameters___cinit__(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   ControlParameters *__pyx_t_1;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "mctdh.pyx":33
+  /* "mctdh.pyx":46
  *     cdef ControlParameters *control_ptr
  *     def __cinit__(self):
  *         self.control_ptr = new ControlParameters()             # <<<<<<<<<<<<<<
@@ -1237,12 +1225,12 @@ static int __pyx_pf_5mctdh_19PyControlParameters___cinit__(struct __pyx_obj_5mct
     __pyx_t_1 = new ControlParameters();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(1, 33, __pyx_L1_error)
+    __PYX_ERR(1, 46, __pyx_L1_error)
   }
   __pyx_v_self->control_ptr = __pyx_t_1;
 
-  /* "mctdh.pyx":32
- * cdef class PyControlParameters:
+  /* "mctdh.pyx":45
+ * cdef class controlParameters:
  *     cdef ControlParameters *control_ptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.control_ptr = new ControlParameters()
@@ -1253,107 +1241,107 @@ static int __pyx_pf_5mctdh_19PyControlParameters___cinit__(struct __pyx_obj_5mct
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("mctdh.PyControlParameters.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "mctdh.pyx":34
+/* "mctdh.pyx":47
  *     def __cinit__(self):
  *         self.control_ptr = new ControlParameters()
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.control_ptr
- *     def PyInitialize(self, a):
+ *     def initialize(self, a):
  */
 
 /* Python wrapper */
-static void __pyx_pw_5mctdh_19PyControlParameters_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_5mctdh_19PyControlParameters_3__dealloc__(PyObject *__pyx_v_self) {
+static void __pyx_pw_5mctdh_17controlParameters_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
+static void __pyx_pw_5mctdh_17controlParameters_3__dealloc__(PyObject *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_5mctdh_19PyControlParameters_2__dealloc__(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self));
+  __pyx_pf_5mctdh_17controlParameters_2__dealloc__(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-static void __pyx_pf_5mctdh_19PyControlParameters_2__dealloc__(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self) {
+static void __pyx_pf_5mctdh_17controlParameters_2__dealloc__(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "mctdh.pyx":35
+  /* "mctdh.pyx":48
  *         self.control_ptr = new ControlParameters()
  *     def __dealloc__(self):
  *         del self.control_ptr             # <<<<<<<<<<<<<<
- *     def PyInitialize(self, a):
+ *     def initialize(self, a):
  *             self.control_ptr.Initialize(a, cout)
  */
   delete __pyx_v_self->control_ptr;
 
-  /* "mctdh.pyx":34
+  /* "mctdh.pyx":47
  *     def __cinit__(self):
  *         self.control_ptr = new ControlParameters()
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.control_ptr
- *     def PyInitialize(self, a):
+ *     def initialize(self, a):
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "mctdh.pyx":36
+/* "mctdh.pyx":49
  *     def __dealloc__(self):
  *         del self.control_ptr
- *     def PyInitialize(self, a):             # <<<<<<<<<<<<<<
+ *     def initialize(self, a):             # <<<<<<<<<<<<<<
  *             self.control_ptr.Initialize(a, cout)
- *     def PyEps_CMF(self):
+ *     def eps_CMF(self):
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_5PyInitialize(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /*proto*/
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_5PyInitialize(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
+static PyObject *__pyx_pw_5mctdh_17controlParameters_5initialize(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /*proto*/
+static PyObject *__pyx_pw_5mctdh_17controlParameters_5initialize(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyInitialize (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters_4PyInitialize(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self), ((PyObject *)__pyx_v_a));
+  __Pyx_RefNannySetupContext("initialize (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters_4initialize(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self), ((PyObject *)__pyx_v_a));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_4PyInitialize(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self, PyObject *__pyx_v_a) {
+static PyObject *__pyx_pf_5mctdh_17controlParameters_4initialize(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self, PyObject *__pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   std::string __pyx_t_1;
-  __Pyx_RefNannySetupContext("PyInitialize", 0);
+  __Pyx_RefNannySetupContext("initialize", 0);
 
-  /* "mctdh.pyx":37
+  /* "mctdh.pyx":50
  *         del self.control_ptr
- *     def PyInitialize(self, a):
+ *     def initialize(self, a):
  *             self.control_ptr.Initialize(a, cout)             # <<<<<<<<<<<<<<
- *     def PyEps_CMF(self):
+ *     def eps_CMF(self):
  *         return self.control_ptr.Eps_CMF()
  */
-  __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 37, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_a); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 50, __pyx_L1_error)
   __pyx_v_self->control_ptr->Initialize(__pyx_t_1, std::cout);
 
-  /* "mctdh.pyx":36
+  /* "mctdh.pyx":49
  *     def __dealloc__(self):
  *         del self.control_ptr
- *     def PyInitialize(self, a):             # <<<<<<<<<<<<<<
+ *     def initialize(self, a):             # <<<<<<<<<<<<<<
  *             self.control_ptr.Initialize(a, cout)
- *     def PyEps_CMF(self):
+ *     def eps_CMF(self):
  */
 
   /* function exit code */
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("mctdh.PyControlParameters.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.initialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1361,59 +1349,59 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_4PyInitialize(struct __py
   return __pyx_r;
 }
 
-/* "mctdh.pyx":38
- *     def PyInitialize(self, a):
+/* "mctdh.pyx":51
+ *     def initialize(self, a):
  *             self.control_ptr.Initialize(a, cout)
- *     def PyEps_CMF(self):             # <<<<<<<<<<<<<<
+ *     def eps_CMF(self):             # <<<<<<<<<<<<<<
  *         return self.control_ptr.Eps_CMF()
- *     def PyRegularization(self):
+ *     def regularization(self):
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_7PyEps_CMF(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_7PyEps_CMF(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_17controlParameters_7eps_CMF(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_17controlParameters_7eps_CMF(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyEps_CMF (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters_6PyEps_CMF(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("eps_CMF (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters_6eps_CMF(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_6PyEps_CMF(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_17controlParameters_6eps_CMF(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PyEps_CMF", 0);
+  __Pyx_RefNannySetupContext("eps_CMF", 0);
 
-  /* "mctdh.pyx":39
+  /* "mctdh.pyx":52
  *             self.control_ptr.Initialize(a, cout)
- *     def PyEps_CMF(self):
+ *     def eps_CMF(self):
  *         return self.control_ptr.Eps_CMF()             # <<<<<<<<<<<<<<
- *     def PyRegularization(self):
+ *     def regularization(self):
  *         return self.control_ptr.Regularization()
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->control_ptr->Eps_CMF()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 39, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->control_ptr->Eps_CMF()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mctdh.pyx":38
- *     def PyInitialize(self, a):
+  /* "mctdh.pyx":51
+ *     def initialize(self, a):
  *             self.control_ptr.Initialize(a, cout)
- *     def PyEps_CMF(self):             # <<<<<<<<<<<<<<
+ *     def eps_CMF(self):             # <<<<<<<<<<<<<<
  *         return self.control_ptr.Eps_CMF()
- *     def PyRegularization(self):
+ *     def regularization(self):
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyControlParameters.PyEps_CMF", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.eps_CMF", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1421,51 +1409,51 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_6PyEps_CMF(struct __pyx_o
   return __pyx_r;
 }
 
-/* "mctdh.pyx":40
- *     def PyEps_CMF(self):
+/* "mctdh.pyx":53
+ *     def eps_CMF(self):
  *         return self.control_ptr.Eps_CMF()
- *     def PyRegularization(self):             # <<<<<<<<<<<<<<
+ *     def regularization(self):             # <<<<<<<<<<<<<<
  *         return self.control_ptr.Regularization()
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_9PyRegularization(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_9PyRegularization(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_17controlParameters_9regularization(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_17controlParameters_9regularization(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyRegularization (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters_8PyRegularization(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("regularization (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters_8regularization(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_8PyRegularization(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_17controlParameters_8regularization(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PyRegularization", 0);
+  __Pyx_RefNannySetupContext("regularization", 0);
 
-  /* "mctdh.pyx":41
+  /* "mctdh.pyx":54
  *         return self.control_ptr.Eps_CMF()
- *     def PyRegularization(self):
+ *     def regularization(self):
  *         return self.control_ptr.Regularization()             # <<<<<<<<<<<<<<
  * 
- * cdef ControlParameters * PyToCpp(PyControlParameters py_obj):
+ * cdef ControlParameters * PyToCpp(controlParameters py_obj):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->control_ptr->Regularization()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 41, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->control_ptr->Regularization()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mctdh.pyx":40
- *     def PyEps_CMF(self):
+  /* "mctdh.pyx":53
+ *     def eps_CMF(self):
  *         return self.control_ptr.Eps_CMF()
- *     def PyRegularization(self):             # <<<<<<<<<<<<<<
+ *     def regularization(self):             # <<<<<<<<<<<<<<
  *         return self.control_ptr.Regularization()
  * 
  */
@@ -1473,7 +1461,7 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_8PyRegularization(struct 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyControlParameters.PyRegularization", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.regularization", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1488,19 +1476,19 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_8PyRegularization(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_17controlParameters_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_17controlParameters_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters_10__reduce_cython__(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self));
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters_10__reduce_cython__(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_17controlParameters_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1527,7 +1515,7 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_10__reduce_cython__(CYTHO
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyControlParameters.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -1542,19 +1530,19 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_10__reduce_cython__(CYTHO
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_5mctdh_19PyControlParameters_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_5mctdh_17controlParameters_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_5mctdh_17controlParameters_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_19PyControlParameters_12__setstate_cython__(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_5mctdh_17controlParameters_12__setstate_cython__(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_19PyControlParameters_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_5mctdh_17controlParameters_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_controlParameters *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1581,40 +1569,40 @@ static PyObject *__pyx_pf_5mctdh_19PyControlParameters_12__setstate_cython__(CYT
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyControlParameters.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.controlParameters.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "mctdh.pyx":43
+/* "mctdh.pyx":56
  *         return self.control_ptr.Regularization()
  * 
- * cdef ControlParameters * PyToCpp(PyControlParameters py_obj):             # <<<<<<<<<<<<<<
+ * cdef ControlParameters * PyToCpp(controlParameters py_obj):             # <<<<<<<<<<<<<<
  *     return py_obj.control_ptr
  * 
  */
 
-static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_PyControlParameters *__pyx_v_py_obj) {
+static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_controlParameters *__pyx_v_py_obj) {
   ControlParameters *__pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("PyToCpp", 0);
 
-  /* "mctdh.pyx":44
+  /* "mctdh.pyx":57
  * 
- * cdef ControlParameters * PyToCpp(PyControlParameters py_obj):
+ * cdef ControlParameters * PyToCpp(controlParameters py_obj):
  *     return py_obj.control_ptr             # <<<<<<<<<<<<<<
  * 
- * cdef class PymctdhBasis:
+ * cdef class MctdhBasis:
  */
   __pyx_r = __pyx_v_py_obj->control_ptr;
   goto __pyx_L0;
 
-  /* "mctdh.pyx":43
+  /* "mctdh.pyx":56
  *         return self.control_ptr.Regularization()
  * 
- * cdef ControlParameters * PyToCpp(PyControlParameters py_obj):             # <<<<<<<<<<<<<<
+ * cdef ControlParameters * PyToCpp(controlParameters py_obj):             # <<<<<<<<<<<<<<
  *     return py_obj.control_ptr
  * 
  */
@@ -1625,8 +1613,8 @@ static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_PyContr
   return __pyx_r;
 }
 
-/* "mctdh.pyx":48
- * cdef class PymctdhBasis:
+/* "mctdh.pyx":61
+ * cdef class MctdhBasis:
  *   cdef mctdhBasis *basis_ptr
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
  *       self.basis_ptr = new mctdhBasis()
@@ -1634,28 +1622,28 @@ static ControlParameters *__pyx_f_5mctdh_PyToCpp(struct __pyx_obj_5mctdh_PyContr
  */
 
 /* Python wrapper */
-static int __pyx_pw_5mctdh_12PymctdhBasis_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_5mctdh_12PymctdhBasis_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_5mctdh_10MctdhBasis_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_5mctdh_10MctdhBasis_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
     __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return -1;}
   if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__cinit__", 0))) return -1;
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis___cinit__(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self));
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis___cinit__(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_5mctdh_12PymctdhBasis___cinit__(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self) {
+static int __pyx_pf_5mctdh_10MctdhBasis___cinit__(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   mctdhBasis *__pyx_t_1;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "mctdh.pyx":49
+  /* "mctdh.pyx":62
  *   cdef mctdhBasis *basis_ptr
  *   def __cinit__(self):
  *       self.basis_ptr = new mctdhBasis()             # <<<<<<<<<<<<<<
@@ -1666,12 +1654,12 @@ static int __pyx_pf_5mctdh_12PymctdhBasis___cinit__(struct __pyx_obj_5mctdh_Pymc
     __pyx_t_1 = new mctdhBasis();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(1, 49, __pyx_L1_error)
+    __PYX_ERR(1, 62, __pyx_L1_error)
   }
   __pyx_v_self->basis_ptr = __pyx_t_1;
 
-  /* "mctdh.pyx":48
- * cdef class PymctdhBasis:
+  /* "mctdh.pyx":61
+ * cdef class MctdhBasis:
  *   cdef mctdhBasis *basis_ptr
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
  *       self.basis_ptr = new mctdhBasis()
@@ -1682,193 +1670,73 @@ static int __pyx_pf_5mctdh_12PymctdhBasis___cinit__(struct __pyx_obj_5mctdh_Pymc
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "mctdh.pyx":50
+/* "mctdh.pyx":63
  *   def __cinit__(self):
  *       self.basis_ptr = new mctdhBasis()
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
  *       del self.basis_ptr
- *   cpdef PyInitialize(self, filename, py_config_obj):
+ *   def initialize(self, filename, py_config_obj):
  */
 
 /* Python wrapper */
-static void __pyx_pw_5mctdh_12PymctdhBasis_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_5mctdh_12PymctdhBasis_3__dealloc__(PyObject *__pyx_v_self) {
+static void __pyx_pw_5mctdh_10MctdhBasis_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
+static void __pyx_pw_5mctdh_10MctdhBasis_3__dealloc__(PyObject *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_5mctdh_12PymctdhBasis_2__dealloc__(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self));
+  __pyx_pf_5mctdh_10MctdhBasis_2__dealloc__(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-static void __pyx_pf_5mctdh_12PymctdhBasis_2__dealloc__(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self) {
+static void __pyx_pf_5mctdh_10MctdhBasis_2__dealloc__(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "mctdh.pyx":51
+  /* "mctdh.pyx":64
  *       self.basis_ptr = new mctdhBasis()
  *   def __dealloc__(self):
  *       del self.basis_ptr             # <<<<<<<<<<<<<<
- *   cpdef PyInitialize(self, filename, py_config_obj):
+ *   def initialize(self, filename, py_config_obj):
  *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
  */
   delete __pyx_v_self->basis_ptr;
 
-  /* "mctdh.pyx":50
+  /* "mctdh.pyx":63
  *   def __cinit__(self):
  *       self.basis_ptr = new mctdhBasis()
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
  *       del self.basis_ptr
- *   cpdef PyInitialize(self, filename, py_config_obj):
+ *   def initialize(self, filename, py_config_obj):
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "mctdh.pyx":52
+/* "mctdh.pyx":65
  *   def __dealloc__(self):
  *       del self.basis_ptr
- *   cpdef PyInitialize(self, filename, py_config_obj):             # <<<<<<<<<<<<<<
+ *   def initialize(self, filename, py_config_obj):             # <<<<<<<<<<<<<<
  *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
  *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
  */
-
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PyInitialize(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj, int __pyx_skip_dispatch) {
-  ControlParameters *__pyx_v_new_config_ptr;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  std::string __pyx_t_7;
-  __Pyx_RefNannySetupContext("PyInitialize", 0);
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overridden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_PyInitialize); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 52, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize)) {
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(__pyx_t_1);
-      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
-      __pyx_t_5 = 0;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_4)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_4);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_3, function);
-          __pyx_t_5 = 1;
-        }
-      }
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_3)) {
-        PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_filename, __pyx_v_py_config_obj};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_GOTREF(__pyx_t_2);
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-        PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_filename, __pyx_v_py_config_obj};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_GOTREF(__pyx_t_2);
-      } else
-      #endif
-      {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 52, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
-        if (__pyx_t_4) {
-          __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
-        }
-        __Pyx_INCREF(__pyx_v_filename);
-        __Pyx_GIVEREF(__pyx_v_filename);
-        PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_filename);
-        __Pyx_INCREF(__pyx_v_py_config_obj);
-        __Pyx_GIVEREF(__pyx_v_py_config_obj);
-        PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_py_config_obj);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      }
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "mctdh.pyx":53
- *       del self.basis_ptr
- *   cpdef PyInitialize(self, filename, py_config_obj):
- *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)             # <<<<<<<<<<<<<<
- *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
- *   cpdef PyRegularizationDensity(self):
- */
-  if (!(likely(((__pyx_v_py_config_obj) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_py_config_obj, __pyx_ptype_5mctdh_PyControlParameters))))) __PYX_ERR(1, 53, __pyx_L1_error)
-  __pyx_v_new_config_ptr = __pyx_f_5mctdh_PyToCpp(((struct __pyx_obj_5mctdh_PyControlParameters *)__pyx_v_py_config_obj));
-
-  /* "mctdh.pyx":54
- *   cpdef PyInitialize(self, filename, py_config_obj):
- *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
- *       self.basis_ptr.Initialize(filename, new_config_ptr[0])             # <<<<<<<<<<<<<<
- *   cpdef PyRegularizationDensity(self):
- *       return self.basis_ptr.RegularizationDensity()
- */
-  __pyx_t_7 = __pyx_convert_string_from_py_std__in_string(__pyx_v_filename); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 54, __pyx_L1_error)
-  __pyx_v_self->basis_ptr->Initialize(__pyx_t_7, (__pyx_v_new_config_ptr[0]));
-
-  /* "mctdh.pyx":52
- *   def __dealloc__(self):
- *       del self.basis_ptr
- *   cpdef PyInitialize(self, filename, py_config_obj):             # <<<<<<<<<<<<<<
- *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
- *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_5initialize(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_5initialize(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_filename = 0;
   PyObject *__pyx_v_py_config_obj = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyInitialize (wrapper)", 0);
+  __Pyx_RefNannySetupContext("initialize (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_filename,&__pyx_n_s_py_config_obj,0};
     PyObject* values[2] = {0,0};
@@ -1892,11 +1760,11 @@ static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize(PyObject *__pyx_v_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_py_config_obj)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("PyInitialize", 1, 2, 2, 1); __PYX_ERR(1, 52, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("initialize", 1, 2, 2, 1); __PYX_ERR(1, 65, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "PyInitialize") < 0)) __PYX_ERR(1, 52, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "initialize") < 0)) __PYX_ERR(1, 65, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1909,35 +1777,59 @@ static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize(PyObject *__pyx_v_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("PyInitialize", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 52, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("initialize", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 65, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.initialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis_4PyInitialize(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self), __pyx_v_filename, __pyx_v_py_config_obj);
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_4initialize(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self), __pyx_v_filename, __pyx_v_py_config_obj);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_4PyInitialize(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj) {
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_4initialize(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_filename, PyObject *__pyx_v_py_config_obj) {
+  ControlParameters *__pyx_v_new_config_ptr;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PyInitialize", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_5mctdh_12PymctdhBasis_PyInitialize(__pyx_v_self, __pyx_v_filename, __pyx_v_py_config_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
+  std::string __pyx_t_1;
+  __Pyx_RefNannySetupContext("initialize", 0);
+
+  /* "mctdh.pyx":66
+ *       del self.basis_ptr
+ *   def initialize(self, filename, py_config_obj):
+ *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)             # <<<<<<<<<<<<<<
+ *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
+ *   def regularizationDensity(self):
+ */
+  if (!(likely(((__pyx_v_py_config_obj) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_py_config_obj, __pyx_ptype_5mctdh_controlParameters))))) __PYX_ERR(1, 66, __pyx_L1_error)
+  __pyx_v_new_config_ptr = __pyx_f_5mctdh_PyToCpp(((struct __pyx_obj_5mctdh_controlParameters *)__pyx_v_py_config_obj));
+
+  /* "mctdh.pyx":67
+ *   def initialize(self, filename, py_config_obj):
+ *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
+ *       self.basis_ptr.Initialize(filename, new_config_ptr[0])             # <<<<<<<<<<<<<<
+ *   def regularizationDensity(self):
+ *       return self.basis_ptr.RegularizationDensity()
+ */
+  __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_filename); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 67, __pyx_L1_error)
+  __pyx_v_self->basis_ptr->Initialize(__pyx_t_1, (__pyx_v_new_config_ptr[0]));
+
+  /* "mctdh.pyx":65
+ *   def __dealloc__(self):
+ *       del self.basis_ptr
+ *   def initialize(self, filename, py_config_obj):             # <<<<<<<<<<<<<<
+ *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
+ *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
+ */
 
   /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.initialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1945,123 +1837,59 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_4PyInitialize(struct __pyx_obj_5
   return __pyx_r;
 }
 
-/* "mctdh.pyx":55
+/* "mctdh.pyx":68
  *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
  *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
- *   cpdef PyRegularizationDensity(self):             # <<<<<<<<<<<<<<
+ *   def regularizationDensity(self):             # <<<<<<<<<<<<<<
  *       return self.basis_ptr.RegularizationDensity()
- *   cpdef PynPhysNodes(self):
+ *   def NPhysNodes(self):
  */
 
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_7PyRegularizationDensity(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PyRegularizationDensity(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, int __pyx_skip_dispatch) {
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_7regularizationDensity(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_7regularizationDensity(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("regularizationDensity (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_6regularizationDensity(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_6regularizationDensity(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  __Pyx_RefNannySetupContext("PyRegularizationDensity", 0);
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overridden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_PyRegularizationDensity); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_7PyRegularizationDensity)) {
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(__pyx_t_1);
-      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_4)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_4);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_3, function);
-        }
-      }
-      if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 55, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 55, __pyx_L1_error)
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
+  __Pyx_RefNannySetupContext("regularizationDensity", 0);
 
-  /* "mctdh.pyx":56
+  /* "mctdh.pyx":69
  *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
- *   cpdef PyRegularizationDensity(self):
+ *   def regularizationDensity(self):
  *       return self.basis_ptr.RegularizationDensity()             # <<<<<<<<<<<<<<
- *   cpdef PynPhysNodes(self):
+ *   def NPhysNodes(self):
  *       return self.basis_ptr.nPhysNodes()
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->basis_ptr->RegularizationDensity()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->basis_ptr->RegularizationDensity()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mctdh.pyx":55
+  /* "mctdh.pyx":68
  *       cdef ControlParameters * new_config_ptr = PyToCpp(py_config_obj)
  *       self.basis_ptr.Initialize(filename, new_config_ptr[0])
- *   cpdef PyRegularizationDensity(self):             # <<<<<<<<<<<<<<
+ *   def regularizationDensity(self):             # <<<<<<<<<<<<<<
  *       return self.basis_ptr.RegularizationDensity()
- *   cpdef PynPhysNodes(self):
+ *   def NPhysNodes(self):
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PyRegularizationDensity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_7PyRegularizationDensity(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_7PyRegularizationDensity(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyRegularizationDensity (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis_6PyRegularizationDensity(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_6PyRegularizationDensity(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PyRegularizationDensity", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_5mctdh_12PymctdhBasis_PyRegularizationDensity(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PyRegularizationDensity", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.regularizationDensity", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2069,31 +1897,94 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_6PyRegularizationDensity(struct 
   return __pyx_r;
 }
 
-/* "mctdh.pyx":57
- *   cpdef PyRegularizationDensity(self):
+/* "mctdh.pyx":70
+ *   def regularizationDensity(self):
  *       return self.basis_ptr.RegularizationDensity()
- *   cpdef PynPhysNodes(self):             # <<<<<<<<<<<<<<
+ *   def NPhysNodes(self):             # <<<<<<<<<<<<<<
  *       return self.basis_ptr.nPhysNodes()
- * 
+ *   cpdef MctdhNode PyMCTDHNode(self, i):
  */
 
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_9PynPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, int __pyx_skip_dispatch) {
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_9NPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_9NPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("NPhysNodes (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_8NPhysNodes(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_8NPhysNodes(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("NPhysNodes", 0);
+
+  /* "mctdh.pyx":71
+ *       return self.basis_ptr.RegularizationDensity()
+ *   def NPhysNodes(self):
+ *       return self.basis_ptr.nPhysNodes()             # <<<<<<<<<<<<<<
+ *   cpdef MctdhNode PyMCTDHNode(self, i):
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->basis_ptr->nPhysNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":70
+ *   def regularizationDensity(self):
+ *       return self.basis_ptr.RegularizationDensity()
+ *   def NPhysNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.basis_ptr.nPhysNodes()
+ *   cpdef MctdhNode PyMCTDHNode(self, i):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.NPhysNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":72
+ *   def NPhysNodes(self):
+ *       return self.basis_ptr.nPhysNodes()
+ *   cpdef MctdhNode PyMCTDHNode(self, i):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ *       return PyMctdhNode_factory(node)
+ */
+
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_11PyMCTDHNode(PyObject *__pyx_v_self, PyObject *__pyx_v_i); /*proto*/
+static struct __pyx_obj_5mctdh_MctdhNode *__pyx_f_5mctdh_10MctdhBasis_PyMCTDHNode(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_i, int __pyx_skip_dispatch) {
+  mctdhNode const *__pyx_v_node;
+  struct __pyx_obj_5mctdh_MctdhNode *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  __Pyx_RefNannySetupContext("PynPhysNodes", 0);
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  __Pyx_RefNannySetupContext("PyMCTDHNode", 0);
   /* Check if called by wrapper */
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_PynPhysNodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_PyMCTDHNode); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_9PynPhysNodes)) {
-      __Pyx_XDECREF(__pyx_r);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_11PyMCTDHNode)) {
+      __Pyx_XDECREF(((PyObject *)__pyx_r));
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2105,15 +1996,41 @@ static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(struct __pyx_obj_5mc
           __Pyx_DECREF_SET(__pyx_t_3, function);
         }
       }
-      if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 57, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (!__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 72, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 57, __pyx_L1_error)
+        #if CYTHON_FAST_PYCALL
+        if (PyFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_i};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 72, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        #if CYTHON_FAST_PYCCALL
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+          PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_i};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 72, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
+        } else
+        #endif
+        {
+          __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 72, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_5);
+          __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
+          __Pyx_INCREF(__pyx_v_i);
+          __Pyx_GIVEREF(__pyx_v_i);
+          PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_i);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 72, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        }
       }
-      __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5mctdh_MctdhNode))))) __PYX_ERR(1, 72, __pyx_L1_error)
+      __pyx_r = ((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -2121,26 +2038,37 @@ static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(struct __pyx_obj_5mc
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "mctdh.pyx":58
- *       return self.basis_ptr.RegularizationDensity()
- *   cpdef PynPhysNodes(self):
- *       return self.basis_ptr.nPhysNodes()             # <<<<<<<<<<<<<<
- * 
- * cdef mctdhBasis * PyToCpp2(PymctdhBasis py_obj):
+  /* "mctdh.pyx":73
+ *       return self.basis_ptr.nPhysNodes()
+ *   cpdef MctdhNode PyMCTDHNode(self, i):
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))             # <<<<<<<<<<<<<<
+ *       return PyMctdhNode_factory(node)
+ *   def NmctdhNodes(self):
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->basis_ptr->nPhysNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_size_t(__pyx_v_i); if (unlikely((__pyx_t_6 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 73, __pyx_L1_error)
+  __pyx_v_node = (&__pyx_v_self->basis_ptr->MCTDHNode(__pyx_t_6));
+
+  /* "mctdh.pyx":74
+ *   cpdef MctdhNode PyMCTDHNode(self, i):
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ *       return PyMctdhNode_factory(node)             # <<<<<<<<<<<<<<
+ *   def NmctdhNodes(self):
+ *       return self.basis_ptr.nmctdhNodes()
+ */
+  __Pyx_XDECREF(((PyObject *)__pyx_r));
+  __pyx_t_1 = __pyx_f_5mctdh_PyMctdhNode_factory(__pyx_v_node); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5mctdh_MctdhNode))))) __PYX_ERR(1, 74, __pyx_L1_error)
+  __pyx_r = ((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mctdh.pyx":57
- *   cpdef PyRegularizationDensity(self):
- *       return self.basis_ptr.RegularizationDensity()
- *   cpdef PynPhysNodes(self):             # <<<<<<<<<<<<<<
+  /* "mctdh.pyx":72
+ *   def NPhysNodes(self):
  *       return self.basis_ptr.nPhysNodes()
- * 
+ *   cpdef MctdhNode PyMCTDHNode(self, i):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ *       return PyMctdhNode_factory(node)
  */
 
   /* function exit code */
@@ -2149,34 +2077,35 @@ static PyObject *__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(struct __pyx_obj_5mc
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PynPhysNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.PyMCTDHNode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_9PynPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_9PynPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_11PyMCTDHNode(PyObject *__pyx_v_self, PyObject *__pyx_v_i); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_11PyMCTDHNode(PyObject *__pyx_v_self, PyObject *__pyx_v_i) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PynPhysNodes (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis_8PynPhysNodes(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("PyMCTDHNode (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_10PyMCTDHNode(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self), ((PyObject *)__pyx_v_i));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_8PynPhysNodes(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_10PyMCTDHNode(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, PyObject *__pyx_v_i) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PynPhysNodes", 0);
+  __Pyx_RefNannySetupContext("PyMCTDHNode", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_5mctdh_10MctdhBasis_PyMCTDHNode(__pyx_v_self, __pyx_v_i, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2185,7 +2114,67 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_8PynPhysNodes(struct __pyx_obj_5
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.PynPhysNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.PyMCTDHNode", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":75
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ *       return PyMctdhNode_factory(node)
+ *   def NmctdhNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.basis_ptr.nmctdhNodes()
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_13NmctdhNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_13NmctdhNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("NmctdhNodes (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_12NmctdhNodes(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_12NmctdhNodes(struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("NmctdhNodes", 0);
+
+  /* "mctdh.pyx":76
+ *       return PyMctdhNode_factory(node)
+ *   def NmctdhNodes(self):
+ *       return self.basis_ptr.nmctdhNodes()             # <<<<<<<<<<<<<<
+ * 
+ * cdef object PyMctdhNode_factory(const mctdhNode *ptr):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->basis_ptr->nmctdhNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":75
+ *       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
+ *       return PyMctdhNode_factory(node)
+ *   def NmctdhNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.basis_ptr.nmctdhNodes()
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.NmctdhNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2200,19 +2189,19 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_8PynPhysNodes(struct __pyx_obj_5
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_15__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_15__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis_10__reduce_cython__(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self));
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_14__reduce_cython__(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_14__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2239,7 +2228,7 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_10__reduce_cython__(CYTHON_UNUSE
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -2254,19 +2243,19 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_10__reduce_cython__(CYTHON_UNUSE
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_5mctdh_12PymctdhBasis_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_17__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_5mctdh_10MctdhBasis_17__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_12PymctdhBasis_12__setstate_cython__(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_5mctdh_10MctdhBasis_16__setstate_cython__(((struct __pyx_obj_5mctdh_MctdhBasis *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_5mctdh_10MctdhBasis_16__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhBasis *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2293,238 +2282,682 @@ static PyObject *__pyx_pf_5mctdh_12PymctdhBasis_12__setstate_cython__(CYTHON_UNU
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PymctdhBasis.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhBasis.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "mctdh.pyx":60
- *       return self.basis_ptr.nPhysNodes()
+/* "mctdh.pyx":78
+ *       return self.basis_ptr.nmctdhNodes()
  * 
- * cdef mctdhBasis * PyToCpp2(PymctdhBasis py_obj):             # <<<<<<<<<<<<<<
- *     return py_obj.basis_ptr
- * 
+ * cdef object PyMctdhNode_factory(const mctdhNode *ptr):             # <<<<<<<<<<<<<<
+ *       cdef MctdhNode py_obj = MctdhNode()
+ *       py_obj.node_ptr = ptr
  */
 
-static mctdhBasis *__pyx_f_5mctdh_PyToCpp2(struct __pyx_obj_5mctdh_PymctdhBasis *__pyx_v_py_obj) {
-  mctdhBasis *__pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyToCpp2", 0);
-
-  /* "mctdh.pyx":61
- * 
- * cdef mctdhBasis * PyToCpp2(PymctdhBasis py_obj):
- *     return py_obj.basis_ptr             # <<<<<<<<<<<<<<
- * 
- * cdef class PyMctdhNode:
- */
-  __pyx_r = __pyx_v_py_obj->basis_ptr;
-  goto __pyx_L0;
-
-  /* "mctdh.pyx":60
- *       return self.basis_ptr.nPhysNodes()
- * 
- * cdef mctdhBasis * PyToCpp2(PymctdhBasis py_obj):             # <<<<<<<<<<<<<<
- *     return py_obj.basis_ptr
- * 
- */
-
-  /* function exit code */
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "mctdh.pyx":65
- * cdef class PyMctdhNode:
- *   cdef mctdhNode * node_ptr
- *   def __cinit__(self):             # <<<<<<<<<<<<<<
- *       self.node_ptr = new mctdhNode()
- * #  def __dealloc__(self):
- */
-
-/* Python wrapper */
-static int __pyx_pw_5mctdh_11PyMctdhNode_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_5mctdh_11PyMctdhNode_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
-  if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
-    __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return -1;}
-  if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__cinit__", 0))) return -1;
-  __pyx_r = __pyx_pf_5mctdh_11PyMctdhNode___cinit__(((struct __pyx_obj_5mctdh_PyMctdhNode *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_5mctdh_11PyMctdhNode___cinit__(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  mctdhNode *__pyx_t_1;
-  __Pyx_RefNannySetupContext("__cinit__", 0);
-
-  /* "mctdh.pyx":66
- *   cdef mctdhNode * node_ptr
- *   def __cinit__(self):
- *       self.node_ptr = new mctdhNode()             # <<<<<<<<<<<<<<
- * #  def __dealloc__(self):
- * #      del self.node_ptr
- */
-  try {
-    __pyx_t_1 = new mctdhNode();
-  } catch(...) {
-    __Pyx_CppExn2PyErr();
-    __PYX_ERR(1, 66, __pyx_L1_error)
-  }
-  __pyx_v_self->node_ptr = __pyx_t_1;
-
-  /* "mctdh.pyx":65
- * cdef class PyMctdhNode:
- *   cdef mctdhNode * node_ptr
- *   def __cinit__(self):             # <<<<<<<<<<<<<<
- *       self.node_ptr = new mctdhNode()
- * #  def __dealloc__(self):
- */
-
-  /* function exit code */
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_AddTraceback("mctdh.PyMctdhNode.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "mctdh.pyx":69
- * #  def __dealloc__(self):
- * #      del self.node_ptr
- *   cpdef PyInitialize(py_basis_obj):             # <<<<<<<<<<<<<<
- *       cdef mctdhBasis * new_basis_ptr = PyToCpp2(py_basis_obj)
- *       cdef const mctdhNode * new_node_ptr
- */
-
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_3PyInitialize(PyObject *__pyx_v_py_basis_obj, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_5mctdh_11PyMctdhNode_PyInitialize(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_py_basis_obj, int __pyx_skip_dispatch) {
-  mctdhBasis *__pyx_v_new_basis_ptr;
-  CYTHON_UNUSED mctdhNode const *__pyx_v_new_node_ptr;
+static PyObject *__pyx_f_5mctdh_PyMctdhNode_factory(mctdhNode const *__pyx_v_ptr) {
+  struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_py_obj = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  __Pyx_RefNannySetupContext("PyInitialize", 0);
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overridden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_py_basis_obj))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_py_basis_obj), __pyx_n_s_PyInitialize); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 69, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_5mctdh_11PyMctdhNode_3PyInitialize)) {
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(__pyx_t_1);
-      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_4)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_4);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_3, function);
-        }
-      }
-      if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 69, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 69, __pyx_L1_error)
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
+  __Pyx_RefNannySetupContext("PyMctdhNode_factory", 0);
 
-  /* "mctdh.pyx":70
- * #      del self.node_ptr
- *   cpdef PyInitialize(py_basis_obj):
- *       cdef mctdhBasis * new_basis_ptr = PyToCpp2(py_basis_obj)             # <<<<<<<<<<<<<<
- *       cdef const mctdhNode * new_node_ptr
- *       new_node_ptr = &(new_basis_ptr.MCTDHNode(1))
+  /* "mctdh.pyx":79
+ * 
+ * cdef object PyMctdhNode_factory(const mctdhNode *ptr):
+ *       cdef MctdhNode py_obj = MctdhNode()             # <<<<<<<<<<<<<<
+ *       py_obj.node_ptr = ptr
+ *       return py_obj
  */
-  if (!(likely(((((PyObject *)__pyx_v_py_basis_obj)) == Py_None) || likely(__Pyx_TypeTest(((PyObject *)__pyx_v_py_basis_obj), __pyx_ptype_5mctdh_PymctdhBasis))))) __PYX_ERR(1, 70, __pyx_L1_error)
-  __pyx_v_new_basis_ptr = __pyx_f_5mctdh_PyToCpp2(((struct __pyx_obj_5mctdh_PymctdhBasis *)__pyx_v_py_basis_obj));
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_5mctdh_MctdhNode), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 79, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_py_obj = ((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "mctdh.pyx":72
- *       cdef mctdhBasis * new_basis_ptr = PyToCpp2(py_basis_obj)
- *       cdef const mctdhNode * new_node_ptr
- *       new_node_ptr = &(new_basis_ptr.MCTDHNode(1))             # <<<<<<<<<<<<<<
+  /* "mctdh.pyx":80
+ * cdef object PyMctdhNode_factory(const mctdhNode *ptr):
+ *       cdef MctdhNode py_obj = MctdhNode()
+ *       py_obj.node_ptr = ptr             # <<<<<<<<<<<<<<
+ *       return py_obj
+ * 
  */
-  __pyx_v_new_node_ptr = (&__pyx_v_new_basis_ptr->MCTDHNode(1));
+  __pyx_v_py_obj->node_ptr = __pyx_v_ptr;
 
-  /* "mctdh.pyx":69
- * #  def __dealloc__(self):
- * #      del self.node_ptr
- *   cpdef PyInitialize(py_basis_obj):             # <<<<<<<<<<<<<<
- *       cdef mctdhBasis * new_basis_ptr = PyToCpp2(py_basis_obj)
- *       cdef const mctdhNode * new_node_ptr
+  /* "mctdh.pyx":81
+ *       cdef MctdhNode py_obj = MctdhNode()
+ *       py_obj.node_ptr = ptr
+ *       return py_obj             # <<<<<<<<<<<<<<
+ * 
+ * cdef class MctdhNode:
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(((PyObject *)__pyx_v_py_obj));
+  __pyx_r = ((PyObject *)__pyx_v_py_obj);
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":78
+ *       return self.basis_ptr.nmctdhNodes()
+ * 
+ * cdef object PyMctdhNode_factory(const mctdhNode *ptr):             # <<<<<<<<<<<<<<
+ *       cdef MctdhNode py_obj = MctdhNode()
+ *       py_obj.node_ptr = ptr
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.PyMctdhNode_factory", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_py_obj);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":85
+ * cdef class MctdhNode:
+ *   cdef const mctdhNode * node_ptr
+ *   def Info(self):             # <<<<<<<<<<<<<<
+ *       self.node_ptr.info(cout)
+ *   def Bottomlayer(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_1Info(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_1Info(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("Info (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_Info(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_Info(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("Info", 0);
+
+  /* "mctdh.pyx":86
+ *   cdef const mctdhNode * node_ptr
+ *   def Info(self):
+ *       self.node_ptr.info(cout)             # <<<<<<<<<<<<<<
+ *   def Bottomlayer(self):
+ *       return self.node_ptr.IsBottomlayer()
+ */
+  __pyx_v_self->node_ptr->info(std::cout);
+
+  /* "mctdh.pyx":85
+ * cdef class MctdhNode:
+ *   cdef const mctdhNode * node_ptr
+ *   def Info(self):             # <<<<<<<<<<<<<<
+ *       self.node_ptr.info(cout)
+ *   def Bottomlayer(self):
  */
 
   /* function exit code */
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":87
+ *   def Info(self):
+ *       self.node_ptr.info(cout)
+ *   def Bottomlayer(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.IsBottomlayer()
+ *   def Nnodes(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_3Bottomlayer(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_3Bottomlayer(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("Bottomlayer (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_2Bottomlayer(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_2Bottomlayer(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("Bottomlayer", 0);
+
+  /* "mctdh.pyx":88
+ *       self.node_ptr.info(cout)
+ *   def Bottomlayer(self):
+ *       return self.node_ptr.IsBottomlayer()             # <<<<<<<<<<<<<<
+ *   def Nnodes(self):
+ *       return self.node_ptr.nNodes()
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->node_ptr->IsBottomlayer()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 88, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
+
+  /* "mctdh.pyx":87
+ *   def Info(self):
+ *       self.node_ptr.info(cout)
+ *   def Bottomlayer(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.IsBottomlayer()
+ *   def Nnodes(self):
+ */
+
+  /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("mctdh.PyMctdhNode.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
+  __Pyx_AddTraceback("mctdh.MctdhNode.Bottomlayer", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
+/* "mctdh.pyx":89
+ *   def Bottomlayer(self):
+ *       return self.node_ptr.IsBottomlayer()
+ *   def Nnodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nNodes()
+ *   def NmctdhNodes(self):
+ */
+
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_3PyInitialize(PyObject *__pyx_v_py_basis_obj, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_3PyInitialize(PyObject *__pyx_v_py_basis_obj, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_5Nnodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_5Nnodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("PyInitialize (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_11PyMctdhNode_2PyInitialize(((struct __pyx_obj_5mctdh_PyMctdhNode *)__pyx_v_py_basis_obj));
+  __Pyx_RefNannySetupContext("Nnodes (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_4Nnodes(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_2PyInitialize(struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_py_basis_obj) {
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_4Nnodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("PyInitialize", 0);
+  __Pyx_RefNannySetupContext("Nnodes", 0);
+
+  /* "mctdh.pyx":90
+ *       return self.node_ptr.IsBottomlayer()
+ *   def Nnodes(self):
+ *       return self.node_ptr.nNodes()             # <<<<<<<<<<<<<<
+ *   def NmctdhNodes(self):
+ *       return self.node_ptr.nmctdhNodes()
+ */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_5mctdh_11PyMctdhNode_PyInitialize(__pyx_v_py_basis_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->node_ptr->nNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
+  /* "mctdh.pyx":89
+ *   def Bottomlayer(self):
+ *       return self.node_ptr.IsBottomlayer()
+ *   def Nnodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nNodes()
+ *   def NmctdhNodes(self):
+ */
+
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyMctdhNode.PyInitialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhNode.Nnodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":91
+ *   def Nnodes(self):
+ *       return self.node_ptr.nNodes()
+ *   def NmctdhNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nmctdhNodes()
+ *   def NPhysNodes(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_7NmctdhNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_7NmctdhNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("NmctdhNodes (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_6NmctdhNodes(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_6NmctdhNodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("NmctdhNodes", 0);
+
+  /* "mctdh.pyx":92
+ *       return self.node_ptr.nNodes()
+ *   def NmctdhNodes(self):
+ *       return self.node_ptr.nmctdhNodes()             # <<<<<<<<<<<<<<
+ *   def NPhysNodes(self):
+ *       return self.node_ptr.nPhysNodes()
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->node_ptr->nmctdhNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 92, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":91
+ *   def Nnodes(self):
+ *       return self.node_ptr.nNodes()
+ *   def NmctdhNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nmctdhNodes()
+ *   def NPhysNodes(self):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.NmctdhNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":93
+ *   def NmctdhNodes(self):
+ *       return self.node_ptr.nmctdhNodes()
+ *   def NPhysNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nPhysNodes()
+ *   def Toplayer(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_9NPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_9NPhysNodes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("NPhysNodes (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_8NPhysNodes(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_8NPhysNodes(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("NPhysNodes", 0);
+
+  /* "mctdh.pyx":94
+ *       return self.node_ptr.nmctdhNodes()
+ *   def NPhysNodes(self):
+ *       return self.node_ptr.nPhysNodes()             # <<<<<<<<<<<<<<
+ *   def Toplayer(self):
+ *       return self.node_ptr.IsToplayer()
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t(__pyx_v_self->node_ptr->nPhysNodes()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":93
+ *   def NmctdhNodes(self):
+ *       return self.node_ptr.nmctdhNodes()
+ *   def NPhysNodes(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nPhysNodes()
+ *   def Toplayer(self):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.NPhysNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":95
+ *   def NPhysNodes(self):
+ *       return self.node_ptr.nPhysNodes()
+ *   def Toplayer(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.IsToplayer()
+ *   def up(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_11Toplayer(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_11Toplayer(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("Toplayer (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_10Toplayer(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_10Toplayer(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("Toplayer", 0);
+
+  /* "mctdh.pyx":96
+ *       return self.node_ptr.nPhysNodes()
+ *   def Toplayer(self):
+ *       return self.node_ptr.IsToplayer()             # <<<<<<<<<<<<<<
+ *   def up(self):
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->node_ptr->IsToplayer()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 96, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":95
+ *   def NPhysNodes(self):
+ *       return self.node_ptr.nPhysNodes()
+ *   def Toplayer(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.IsToplayer()
+ *   def up(self):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.Toplayer", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":97
+ *   def Toplayer(self):
+ *       return self.node_ptr.IsToplayer()
+ *   def up(self):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ *       return PyMctdhNode_factory(node_up)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_13up(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_13up(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("up (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_12up(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_12up(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  mctdhNode const *__pyx_v_node_up;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("up", 0);
+
+  /* "mctdh.pyx":98
+ *       return self.node_ptr.IsToplayer()
+ *   def up(self):
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())             # <<<<<<<<<<<<<<
+ *       return PyMctdhNode_factory(node_up)
+ *   def down(self, i):
+ */
+  __pyx_v_node_up = (&__pyx_v_self->node_ptr->Up());
+
+  /* "mctdh.pyx":99
+ *   def up(self):
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ *       return PyMctdhNode_factory(node_up)             # <<<<<<<<<<<<<<
+ *   def down(self, i):
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_5mctdh_PyMctdhNode_factory(__pyx_v_node_up); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":97
+ *   def Toplayer(self):
+ *       return self.node_ptr.IsToplayer()
+ *   def up(self):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ *       return PyMctdhNode_factory(node_up)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.up", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":100
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ *       return PyMctdhNode_factory(node_up)
+ *   def down(self, i):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ *       return PyMctdhNode_factory(node_down)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_15down(PyObject *__pyx_v_self, PyObject *__pyx_v_i); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_15down(PyObject *__pyx_v_self, PyObject *__pyx_v_i) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("down (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_14down(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self), ((PyObject *)__pyx_v_i));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_14down(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self, PyObject *__pyx_v_i) {
+  mctdhNode const *__pyx_v_node_down;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  size_t __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  __Pyx_RefNannySetupContext("down", 0);
+
+  /* "mctdh.pyx":101
+ *       return PyMctdhNode_factory(node_up)
+ *   def down(self, i):
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))             # <<<<<<<<<<<<<<
+ *       return PyMctdhNode_factory(node_down)
+ *   def NChildren(self):
+ */
+  __pyx_t_1 = __Pyx_PyInt_As_size_t(__pyx_v_i); if (unlikely((__pyx_t_1 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 101, __pyx_L1_error)
+  __pyx_v_node_down = (&__pyx_v_self->node_ptr->Down(__pyx_t_1));
+
+  /* "mctdh.pyx":102
+ *   def down(self, i):
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ *       return PyMctdhNode_factory(node_down)             # <<<<<<<<<<<<<<
+ *   def NChildren(self):
+ *       return self.node_ptr.nChildren()
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __pyx_f_5mctdh_PyMctdhNode_factory(__pyx_v_node_down); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":100
+ *       cdef const mctdhNode * node_up = &(self.node_ptr.Up())
+ *       return PyMctdhNode_factory(node_up)
+ *   def down(self, i):             # <<<<<<<<<<<<<<
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ *       return PyMctdhNode_factory(node_down)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("mctdh.MctdhNode.down", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":103
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ *       return PyMctdhNode_factory(node_down)
+ *   def NChildren(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nChildren()
+ *   def address(self):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_17NChildren(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_17NChildren(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("NChildren (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_16NChildren(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_16NChildren(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("NChildren", 0);
+
+  /* "mctdh.pyx":104
+ *       return PyMctdhNode_factory(node_down)
+ *   def NChildren(self):
+ *       return self.node_ptr.nChildren()             # <<<<<<<<<<<<<<
+ *   def address(self):
+ *       return self.node_ptr.Address()
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->node_ptr->nChildren()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":103
+ *       cdef const mctdhNode * node_down = &(self.node_ptr.Down(i))
+ *       return PyMctdhNode_factory(node_down)
+ *   def NChildren(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.nChildren()
+ *   def address(self):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.NChildren", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mctdh.pyx":105
+ *   def NChildren(self):
+ *       return self.node_ptr.nChildren()
+ *   def address(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.Address()
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_19address(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_19address(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("address (wrapper)", 0);
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_18address(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_18address(struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("address", 0);
+
+  /* "mctdh.pyx":106
+ *       return self.node_ptr.nChildren()
+ *   def address(self):
+ *       return self.node_ptr.Address()             # <<<<<<<<<<<<<<
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->node_ptr->Address()); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "mctdh.pyx":105
+ *   def NChildren(self):
+ *       return self.node_ptr.nChildren()
+ *   def address(self):             # <<<<<<<<<<<<<<
+ *       return self.node_ptr.Address()
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("mctdh.MctdhNode.address", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2534,24 +2967,24 @@ static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_2PyInitialize(struct __pyx_obj_5m
 
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_21__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_21__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(((struct __pyx_obj_5mctdh_PyMctdhNode *)__pyx_v_self));
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_20__reduce_cython__(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self) {
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_20__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2559,9 +2992,9 @@ static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(CYTHON_UNUSED 
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  */
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2571,14 +3004,14 @@ static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(CYTHON_UNUSED 
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyMctdhNode.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhNode.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -2587,34 +3020,34 @@ static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_4__reduce_cython__(CYTHON_UNUSED 
 
 /* "(tree fragment)":3
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_5mctdh_11PyMctdhNode_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_23__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_5mctdh_9MctdhNode_23__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_5mctdh_11PyMctdhNode_6__setstate_cython__(((struct __pyx_obj_5mctdh_PyMctdhNode *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_5mctdh_9MctdhNode_22__setstate_cython__(((struct __pyx_obj_5mctdh_MctdhNode *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_PyMctdhNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_5mctdh_9MctdhNode_22__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_5mctdh_MctdhNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":4
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2624,15 +3057,15 @@ static PyObject *__pyx_pf_5mctdh_11PyMctdhNode_6__setstate_cython__(CYTHON_UNUSE
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("mctdh.PyMctdhNode.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mctdh.MctdhNode.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -2692,7 +3125,7 @@ static std::string __pyx_convert_string_from_py_std__in_string(PyObject *__pyx_v
   return __pyx_r;
 }
 
-static PyObject *__pyx_tp_new_5mctdh_PyControlParameters(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_5mctdh_controlParameters(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -2700,14 +3133,14 @@ static PyObject *__pyx_tp_new_5mctdh_PyControlParameters(PyTypeObject *t, CYTHON
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  if (unlikely(__pyx_pw_5mctdh_19PyControlParameters_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
+  if (unlikely(__pyx_pw_5mctdh_17controlParameters_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_5mctdh_PyControlParameters(PyObject *o) {
+static void __pyx_tp_dealloc_5mctdh_controlParameters(PyObject *o) {
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -2717,28 +3150,28 @@ static void __pyx_tp_dealloc_5mctdh_PyControlParameters(PyObject *o) {
     PyObject *etype, *eval, *etb;
     PyErr_Fetch(&etype, &eval, &etb);
     ++Py_REFCNT(o);
-    __pyx_pw_5mctdh_19PyControlParameters_3__dealloc__(o);
+    __pyx_pw_5mctdh_17controlParameters_3__dealloc__(o);
     --Py_REFCNT(o);
     PyErr_Restore(etype, eval, etb);
   }
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyMethodDef __pyx_methods_5mctdh_PyControlParameters[] = {
-  {"PyInitialize", (PyCFunction)__pyx_pw_5mctdh_19PyControlParameters_5PyInitialize, METH_O, 0},
-  {"PyEps_CMF", (PyCFunction)__pyx_pw_5mctdh_19PyControlParameters_7PyEps_CMF, METH_NOARGS, 0},
-  {"PyRegularization", (PyCFunction)__pyx_pw_5mctdh_19PyControlParameters_9PyRegularization, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_19PyControlParameters_11__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_19PyControlParameters_13__setstate_cython__, METH_O, 0},
+static PyMethodDef __pyx_methods_5mctdh_controlParameters[] = {
+  {"initialize", (PyCFunction)__pyx_pw_5mctdh_17controlParameters_5initialize, METH_O, 0},
+  {"eps_CMF", (PyCFunction)__pyx_pw_5mctdh_17controlParameters_7eps_CMF, METH_NOARGS, 0},
+  {"regularization", (PyCFunction)__pyx_pw_5mctdh_17controlParameters_9regularization, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_17controlParameters_11__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_17controlParameters_13__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_5mctdh_PyControlParameters = {
+static PyTypeObject __pyx_type_5mctdh_controlParameters = {
   PyVarObject_HEAD_INIT(0, 0)
-  "mctdh.PyControlParameters", /*tp_name*/
-  sizeof(struct __pyx_obj_5mctdh_PyControlParameters), /*tp_basicsize*/
+  "mctdh.controlParameters", /*tp_name*/
+  sizeof(struct __pyx_obj_5mctdh_controlParameters), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_5mctdh_PyControlParameters, /*tp_dealloc*/
+  __pyx_tp_dealloc_5mctdh_controlParameters, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -2766,7 +3199,7 @@ static PyTypeObject __pyx_type_5mctdh_PyControlParameters = {
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_5mctdh_PyControlParameters, /*tp_methods*/
+  __pyx_methods_5mctdh_controlParameters, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -2776,7 +3209,7 @@ static PyTypeObject __pyx_type_5mctdh_PyControlParameters = {
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_5mctdh_PyControlParameters, /*tp_new*/
+  __pyx_tp_new_5mctdh_controlParameters, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -2790,10 +3223,10 @@ static PyTypeObject __pyx_type_5mctdh_PyControlParameters = {
   0, /*tp_finalize*/
   #endif
 };
-static struct __pyx_vtabstruct_5mctdh_PymctdhBasis __pyx_vtable_5mctdh_PymctdhBasis;
+static struct __pyx_vtabstruct_5mctdh_MctdhBasis __pyx_vtable_5mctdh_MctdhBasis;
 
-static PyObject *__pyx_tp_new_5mctdh_PymctdhBasis(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_5mctdh_PymctdhBasis *p;
+static PyObject *__pyx_tp_new_5mctdh_MctdhBasis(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_5mctdh_MctdhBasis *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -2801,16 +3234,16 @@ static PyObject *__pyx_tp_new_5mctdh_PymctdhBasis(PyTypeObject *t, CYTHON_UNUSED
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_5mctdh_PymctdhBasis *)o);
-  p->__pyx_vtab = __pyx_vtabptr_5mctdh_PymctdhBasis;
-  if (unlikely(__pyx_pw_5mctdh_12PymctdhBasis_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
+  p = ((struct __pyx_obj_5mctdh_MctdhBasis *)o);
+  p->__pyx_vtab = __pyx_vtabptr_5mctdh_MctdhBasis;
+  if (unlikely(__pyx_pw_5mctdh_10MctdhBasis_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_5mctdh_PymctdhBasis(PyObject *o) {
+static void __pyx_tp_dealloc_5mctdh_MctdhBasis(PyObject *o) {
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -2820,28 +3253,30 @@ static void __pyx_tp_dealloc_5mctdh_PymctdhBasis(PyObject *o) {
     PyObject *etype, *eval, *etb;
     PyErr_Fetch(&etype, &eval, &etb);
     ++Py_REFCNT(o);
-    __pyx_pw_5mctdh_12PymctdhBasis_3__dealloc__(o);
+    __pyx_pw_5mctdh_10MctdhBasis_3__dealloc__(o);
     --Py_REFCNT(o);
     PyErr_Restore(etype, eval, etb);
   }
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyMethodDef __pyx_methods_5mctdh_PymctdhBasis[] = {
-  {"PyInitialize", (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_5PyInitialize, METH_VARARGS|METH_KEYWORDS, 0},
-  {"PyRegularizationDensity", (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_7PyRegularizationDensity, METH_NOARGS, 0},
-  {"PynPhysNodes", (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_9PynPhysNodes, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_11__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_12PymctdhBasis_13__setstate_cython__, METH_O, 0},
+static PyMethodDef __pyx_methods_5mctdh_MctdhBasis[] = {
+  {"initialize", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_5initialize, METH_VARARGS|METH_KEYWORDS, 0},
+  {"regularizationDensity", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_7regularizationDensity, METH_NOARGS, 0},
+  {"NPhysNodes", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_9NPhysNodes, METH_NOARGS, 0},
+  {"PyMCTDHNode", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_11PyMCTDHNode, METH_O, 0},
+  {"NmctdhNodes", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_13NmctdhNodes, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_15__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_10MctdhBasis_17__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_5mctdh_PymctdhBasis = {
+static PyTypeObject __pyx_type_5mctdh_MctdhBasis = {
   PyVarObject_HEAD_INIT(0, 0)
-  "mctdh.PymctdhBasis", /*tp_name*/
-  sizeof(struct __pyx_obj_5mctdh_PymctdhBasis), /*tp_basicsize*/
+  "mctdh.MctdhBasis", /*tp_name*/
+  sizeof(struct __pyx_obj_5mctdh_MctdhBasis), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_5mctdh_PymctdhBasis, /*tp_dealloc*/
+  __pyx_tp_dealloc_5mctdh_MctdhBasis, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -2869,7 +3304,7 @@ static PyTypeObject __pyx_type_5mctdh_PymctdhBasis = {
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_5mctdh_PymctdhBasis, /*tp_methods*/
+  __pyx_methods_5mctdh_MctdhBasis, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -2879,7 +3314,7 @@ static PyTypeObject __pyx_type_5mctdh_PymctdhBasis = {
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_5mctdh_PymctdhBasis, /*tp_new*/
+  __pyx_tp_new_5mctdh_MctdhBasis, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -2893,10 +3328,8 @@ static PyTypeObject __pyx_type_5mctdh_PymctdhBasis = {
   0, /*tp_finalize*/
   #endif
 };
-static struct __pyx_vtabstruct_5mctdh_PyMctdhNode __pyx_vtable_5mctdh_PyMctdhNode;
 
-static PyObject *__pyx_tp_new_5mctdh_PyMctdhNode(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_5mctdh_PyMctdhNode *p;
+static PyObject *__pyx_tp_new_5mctdh_MctdhNode(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -2904,16 +3337,10 @@ static PyObject *__pyx_tp_new_5mctdh_PyMctdhNode(PyTypeObject *t, CYTHON_UNUSED 
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_5mctdh_PyMctdhNode *)o);
-  p->__pyx_vtab = __pyx_vtabptr_5mctdh_PyMctdhNode;
-  if (unlikely(__pyx_pw_5mctdh_11PyMctdhNode_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
-  bad:
-  Py_DECREF(o); o = 0;
-  return NULL;
 }
 
-static void __pyx_tp_dealloc_5mctdh_PyMctdhNode(PyObject *o) {
+static void __pyx_tp_dealloc_5mctdh_MctdhNode(PyObject *o) {
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -2922,19 +3349,28 @@ static void __pyx_tp_dealloc_5mctdh_PyMctdhNode(PyObject *o) {
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyMethodDef __pyx_methods_5mctdh_PyMctdhNode[] = {
-  {"PyInitialize", (PyCFunction)__pyx_pw_5mctdh_11PyMctdhNode_3PyInitialize, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_11PyMctdhNode_5__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_11PyMctdhNode_7__setstate_cython__, METH_O, 0},
+static PyMethodDef __pyx_methods_5mctdh_MctdhNode[] = {
+  {"Info", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_1Info, METH_NOARGS, 0},
+  {"Bottomlayer", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_3Bottomlayer, METH_NOARGS, 0},
+  {"Nnodes", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_5Nnodes, METH_NOARGS, 0},
+  {"NmctdhNodes", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_7NmctdhNodes, METH_NOARGS, 0},
+  {"NPhysNodes", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_9NPhysNodes, METH_NOARGS, 0},
+  {"Toplayer", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_11Toplayer, METH_NOARGS, 0},
+  {"up", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_13up, METH_NOARGS, 0},
+  {"down", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_15down, METH_O, 0},
+  {"NChildren", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_17NChildren, METH_NOARGS, 0},
+  {"address", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_19address, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_21__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_5mctdh_9MctdhNode_23__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_5mctdh_PyMctdhNode = {
+static PyTypeObject __pyx_type_5mctdh_MctdhNode = {
   PyVarObject_HEAD_INIT(0, 0)
-  "mctdh.PyMctdhNode", /*tp_name*/
-  sizeof(struct __pyx_obj_5mctdh_PyMctdhNode), /*tp_basicsize*/
+  "mctdh.MctdhNode", /*tp_name*/
+  sizeof(struct __pyx_obj_5mctdh_MctdhNode), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_5mctdh_PyMctdhNode, /*tp_dealloc*/
+  __pyx_tp_dealloc_5mctdh_MctdhNode, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -2962,7 +3398,7 @@ static PyTypeObject __pyx_type_5mctdh_PyMctdhNode = {
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_5mctdh_PyMctdhNode, /*tp_methods*/
+  __pyx_methods_5mctdh_MctdhNode, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -2972,7 +3408,7 @@ static PyTypeObject __pyx_type_5mctdh_PyMctdhNode = {
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_5mctdh_PyMctdhNode, /*tp_new*/
+  __pyx_tp_new_5mctdh_MctdhNode, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -3024,9 +3460,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_n_s_PyInitialize, __pyx_k_PyInitialize, sizeof(__pyx_k_PyInitialize), 0, 0, 1, 1},
-  {&__pyx_n_s_PyRegularizationDensity, __pyx_k_PyRegularizationDensity, sizeof(__pyx_k_PyRegularizationDensity), 0, 0, 1, 1},
-  {&__pyx_n_s_PynPhysNodes, __pyx_k_PynPhysNodes, sizeof(__pyx_k_PynPhysNodes), 0, 0, 1, 1},
+  {&__pyx_n_s_PyMCTDHNode, __pyx_k_PyMCTDHNode, sizeof(__pyx_k_PyMCTDHNode), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_filename, __pyx_k_filename, sizeof(__pyx_k_filename), 0, 0, 1, 1},
@@ -3039,6 +3473,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
+  {&__pyx_kp_s_self_node_ptr_cannot_be_converte, __pyx_k_self_node_ptr_cannot_be_converte, sizeof(__pyx_k_self_node_ptr_cannot_be_converte), 0, 0, 1, 0},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
@@ -3095,20 +3530,20 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_self_node_ptr_cannot_be_converte); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "(tree fragment)":4
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ *     raise TypeError("self.node_ptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_self_node_ptr_cannot_be_converte); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
   __Pyx_RefNannyFinishContext();
@@ -3262,29 +3697,24 @@ static int __pyx_pymod_exec_mctdh(PyObject *__pyx_pyinit_module)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_5mctdh_PyControlParameters) < 0) __PYX_ERR(1, 30, __pyx_L1_error)
-  __pyx_type_5mctdh_PyControlParameters.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "PyControlParameters", (PyObject *)&__pyx_type_5mctdh_PyControlParameters) < 0) __PYX_ERR(1, 30, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_PyControlParameters) < 0) __PYX_ERR(1, 30, __pyx_L1_error)
-  __pyx_ptype_5mctdh_PyControlParameters = &__pyx_type_5mctdh_PyControlParameters;
-  __pyx_vtabptr_5mctdh_PymctdhBasis = &__pyx_vtable_5mctdh_PymctdhBasis;
-  __pyx_vtable_5mctdh_PymctdhBasis.PyInitialize = (PyObject *(*)(struct __pyx_obj_5mctdh_PymctdhBasis *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5mctdh_12PymctdhBasis_PyInitialize;
-  __pyx_vtable_5mctdh_PymctdhBasis.PyRegularizationDensity = (PyObject *(*)(struct __pyx_obj_5mctdh_PymctdhBasis *, int __pyx_skip_dispatch))__pyx_f_5mctdh_12PymctdhBasis_PyRegularizationDensity;
-  __pyx_vtable_5mctdh_PymctdhBasis.PynPhysNodes = (PyObject *(*)(struct __pyx_obj_5mctdh_PymctdhBasis *, int __pyx_skip_dispatch))__pyx_f_5mctdh_12PymctdhBasis_PynPhysNodes;
-  if (PyType_Ready(&__pyx_type_5mctdh_PymctdhBasis) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  __pyx_type_5mctdh_PymctdhBasis.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_5mctdh_PymctdhBasis.tp_dict, __pyx_vtabptr_5mctdh_PymctdhBasis) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "PymctdhBasis", (PyObject *)&__pyx_type_5mctdh_PymctdhBasis) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_PymctdhBasis) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  __pyx_ptype_5mctdh_PymctdhBasis = &__pyx_type_5mctdh_PymctdhBasis;
-  __pyx_vtabptr_5mctdh_PyMctdhNode = &__pyx_vtable_5mctdh_PyMctdhNode;
-  __pyx_vtable_5mctdh_PyMctdhNode.PyInitialize = (PyObject *(*)(struct __pyx_obj_5mctdh_PyMctdhNode *, int __pyx_skip_dispatch))__pyx_f_5mctdh_11PyMctdhNode_PyInitialize;
-  if (PyType_Ready(&__pyx_type_5mctdh_PyMctdhNode) < 0) __PYX_ERR(1, 63, __pyx_L1_error)
-  __pyx_type_5mctdh_PyMctdhNode.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_5mctdh_PyMctdhNode.tp_dict, __pyx_vtabptr_5mctdh_PyMctdhNode) < 0) __PYX_ERR(1, 63, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "PyMctdhNode", (PyObject *)&__pyx_type_5mctdh_PyMctdhNode) < 0) __PYX_ERR(1, 63, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_PyMctdhNode) < 0) __PYX_ERR(1, 63, __pyx_L1_error)
-  __pyx_ptype_5mctdh_PyMctdhNode = &__pyx_type_5mctdh_PyMctdhNode;
+  if (PyType_Ready(&__pyx_type_5mctdh_controlParameters) < 0) __PYX_ERR(1, 43, __pyx_L1_error)
+  __pyx_type_5mctdh_controlParameters.tp_print = 0;
+  if (PyObject_SetAttrString(__pyx_m, "controlParameters", (PyObject *)&__pyx_type_5mctdh_controlParameters) < 0) __PYX_ERR(1, 43, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_controlParameters) < 0) __PYX_ERR(1, 43, __pyx_L1_error)
+  __pyx_ptype_5mctdh_controlParameters = &__pyx_type_5mctdh_controlParameters;
+  __pyx_vtabptr_5mctdh_MctdhBasis = &__pyx_vtable_5mctdh_MctdhBasis;
+  __pyx_vtable_5mctdh_MctdhBasis.PyMCTDHNode = (struct __pyx_obj_5mctdh_MctdhNode *(*)(struct __pyx_obj_5mctdh_MctdhBasis *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5mctdh_10MctdhBasis_PyMCTDHNode;
+  if (PyType_Ready(&__pyx_type_5mctdh_MctdhBasis) < 0) __PYX_ERR(1, 59, __pyx_L1_error)
+  __pyx_type_5mctdh_MctdhBasis.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_5mctdh_MctdhBasis.tp_dict, __pyx_vtabptr_5mctdh_MctdhBasis) < 0) __PYX_ERR(1, 59, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "MctdhBasis", (PyObject *)&__pyx_type_5mctdh_MctdhBasis) < 0) __PYX_ERR(1, 59, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_MctdhBasis) < 0) __PYX_ERR(1, 59, __pyx_L1_error)
+  __pyx_ptype_5mctdh_MctdhBasis = &__pyx_type_5mctdh_MctdhBasis;
+  if (PyType_Ready(&__pyx_type_5mctdh_MctdhNode) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
+  __pyx_type_5mctdh_MctdhNode.tp_print = 0;
+  if (PyObject_SetAttrString(__pyx_m, "MctdhNode", (PyObject *)&__pyx_type_5mctdh_MctdhNode) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mctdh_MctdhNode) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
+  __pyx_ptype_5mctdh_MctdhNode = &__pyx_type_5mctdh_MctdhNode;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
@@ -3636,6 +4066,158 @@ bad:
 }
 #endif
 
+/* RaiseDoubleKeywords */
+static void __Pyx_RaiseDoubleKeywordsError(
+    const char* func_name,
+    PyObject* kw_name)
+{
+    PyErr_Format(PyExc_TypeError,
+        #if PY_MAJOR_VERSION >= 3
+        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
+        #else
+        "%s() got multiple values for keyword argument '%s'", func_name,
+        PyString_AsString(kw_name));
+        #endif
+}
+
+/* ParseKeywords */
+static int __Pyx_ParseOptionalKeywords(
+    PyObject *kwds,
+    PyObject **argnames[],
+    PyObject *kwds2,
+    PyObject *values[],
+    Py_ssize_t num_pos_args,
+    const char* function_name)
+{
+    PyObject *key = 0, *value = 0;
+    Py_ssize_t pos = 0;
+    PyObject*** name;
+    PyObject*** first_kw_arg = argnames + num_pos_args;
+    while (PyDict_Next(kwds, &pos, &key, &value)) {
+        name = first_kw_arg;
+        while (*name && (**name != key)) name++;
+        if (*name) {
+            values[name-argnames] = value;
+            continue;
+        }
+        name = first_kw_arg;
+        #if PY_MAJOR_VERSION < 3
+        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
+            while (*name) {
+                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
+                        && _PyString_Eq(**name, key)) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    if ((**argname == key) || (
+                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
+                             && _PyString_Eq(**argname, key))) {
+                        goto arg_passed_twice;
+                    }
+                    argname++;
+                }
+            }
+        } else
+        #endif
+        if (likely(PyUnicode_Check(key))) {
+            while (*name) {
+                int cmp = (**name == key) ? 0 :
+                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
+                #endif
+                    PyUnicode_Compare(**name, key);
+                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                if (cmp == 0) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    int cmp = (**argname == key) ? 0 :
+                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
+                    #endif
+                        PyUnicode_Compare(**argname, key);
+                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                    if (cmp == 0) goto arg_passed_twice;
+                    argname++;
+                }
+            }
+        } else
+            goto invalid_keyword_type;
+        if (kwds2) {
+            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
+        } else {
+            goto invalid_keyword;
+        }
+    }
+    return 0;
+arg_passed_twice:
+    __Pyx_RaiseDoubleKeywordsError(function_name, key);
+    goto bad;
+invalid_keyword_type:
+    PyErr_Format(PyExc_TypeError,
+        "%.200s() keywords must be strings", function_name);
+    goto bad;
+invalid_keyword:
+    PyErr_Format(PyExc_TypeError,
+    #if PY_MAJOR_VERSION < 3
+        "%.200s() got an unexpected keyword argument '%.200s'",
+        function_name, PyString_AsString(key));
+    #else
+        "%s() got an unexpected keyword argument '%U'",
+        function_name, key);
+    #endif
+bad:
+    return -1;
+}
+
+/* ExtTypeTest */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    if (likely(__Pyx_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
+}
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)meth)) (self, args, nargs);
+    }
+}
+#endif
+
 /* PyFunctionFastCall */
 #if CYTHON_FAST_PYCALL
 #include "frameobject.h"
@@ -3756,158 +4338,6 @@ done:
 #endif
 #endif
 
-/* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
-    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
-    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
-    PyObject *self = PyCFunction_GET_SELF(func);
-    int flags = PyCFunction_GET_FLAGS(func);
-    assert(PyCFunction_Check(func));
-    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS)));
-    assert(nargs >= 0);
-    assert(nargs == 0 || args != NULL);
-    /* _PyCFunction_FastCallDict() must not be called with an exception set,
-       because it may clear it (directly or indirectly) and so the
-       caller loses its exception */
-    assert(!PyErr_Occurred());
-    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
-        return (*((__Pyx_PyCFunctionFastWithKeywords)meth)) (self, args, nargs, NULL);
-    } else {
-        return (*((__Pyx_PyCFunctionFast)meth)) (self, args, nargs);
-    }
-}
-#endif
-
-/* ExtTypeTest */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    if (likely(__Pyx_TypeCheck(obj, type)))
-        return 1;
-    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
-                 Py_TYPE(obj)->tp_name, type->tp_name);
-    return 0;
-}
-
-/* RaiseDoubleKeywords */
-static void __Pyx_RaiseDoubleKeywordsError(
-    const char* func_name,
-    PyObject* kw_name)
-{
-    PyErr_Format(PyExc_TypeError,
-        #if PY_MAJOR_VERSION >= 3
-        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
-        #else
-        "%s() got multiple values for keyword argument '%s'", func_name,
-        PyString_AsString(kw_name));
-        #endif
-}
-
-/* ParseKeywords */
-static int __Pyx_ParseOptionalKeywords(
-    PyObject *kwds,
-    PyObject **argnames[],
-    PyObject *kwds2,
-    PyObject *values[],
-    Py_ssize_t num_pos_args,
-    const char* function_name)
-{
-    PyObject *key = 0, *value = 0;
-    Py_ssize_t pos = 0;
-    PyObject*** name;
-    PyObject*** first_kw_arg = argnames + num_pos_args;
-    while (PyDict_Next(kwds, &pos, &key, &value)) {
-        name = first_kw_arg;
-        while (*name && (**name != key)) name++;
-        if (*name) {
-            values[name-argnames] = value;
-            continue;
-        }
-        name = first_kw_arg;
-        #if PY_MAJOR_VERSION < 3
-        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
-            while (*name) {
-                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
-                        && _PyString_Eq(**name, key)) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    if ((**argname == key) || (
-                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
-                             && _PyString_Eq(**argname, key))) {
-                        goto arg_passed_twice;
-                    }
-                    argname++;
-                }
-            }
-        } else
-        #endif
-        if (likely(PyUnicode_Check(key))) {
-            while (*name) {
-                int cmp = (**name == key) ? 0 :
-                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
-                #endif
-                    PyUnicode_Compare(**name, key);
-                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                if (cmp == 0) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    int cmp = (**argname == key) ? 0 :
-                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
-                    #endif
-                        PyUnicode_Compare(**argname, key);
-                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                    if (cmp == 0) goto arg_passed_twice;
-                    argname++;
-                }
-            }
-        } else
-            goto invalid_keyword_type;
-        if (kwds2) {
-            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
-        } else {
-            goto invalid_keyword;
-        }
-    }
-    return 0;
-arg_passed_twice:
-    __Pyx_RaiseDoubleKeywordsError(function_name, key);
-    goto bad;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    goto bad;
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-bad:
-    return -1;
-}
-
 /* PyObjectCallMethO */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
@@ -3968,29 +4398,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 }
 #endif
 
-/* PyObjectCallNoArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, NULL, 0);
-    }
-#endif
-#ifdef __Pyx_CyFunction_USED
-    if (likely(PyCFunction_Check(func) || __Pyx_TypeCheck(func, __pyx_CyFunctionType))) {
-#else
-    if (likely(PyCFunction_Check(func))) {
-#endif
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
-            return __Pyx_PyObject_CallMethO(func, NULL);
-        }
-    }
-    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
-
 /* SetupReduce */
-  static int __Pyx_setup_reduce_is_named(PyObject* meth, PyObject* name) {
+static int __Pyx_setup_reduce_is_named(PyObject* meth, PyObject* name) {
   int ret;
   PyObject *name_attr;
   name_attr = __Pyx_PyObject_GetAttrStr(meth, __pyx_n_s_name);
@@ -4066,7 +4475,7 @@ GOOD:
 }
 
 /* SetVTable */
-  static int __Pyx_SetVtable(PyObject *dict, void *vtable) {
+static int __Pyx_SetVtable(PyObject *dict, void *vtable) {
 #if PY_VERSION_HEX >= 0x02070000
     PyObject *ob = PyCapsule_New(vtable, 0, 0);
 #else
@@ -4084,7 +4493,7 @@ bad:
 }
 
 /* CLineInTraceback */
-  #ifndef CYTHON_CLINE_IN_TRACEBACK
+#ifndef CYTHON_CLINE_IN_TRACEBACK
 static int __Pyx_CLineForTraceback(CYTHON_UNUSED PyThreadState *tstate, int c_line) {
     PyObject *use_cline;
     PyObject *ptype, *pvalue, *ptraceback;
@@ -4121,7 +4530,7 @@ static int __Pyx_CLineForTraceback(CYTHON_UNUSED PyThreadState *tstate, int c_li
 #endif
 
 /* CodeObjectCache */
-  static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
+static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
     int start = 0, mid = 0, end = count - 1;
     if (end >= 0 && code_line > entries[end].code_line) {
         return count;
@@ -4201,7 +4610,7 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object) {
 }
 
 /* AddTraceback */
-  #include "compile.h"
+#include "compile.h"
 #include "frameobject.h"
 #include "traceback.h"
 static PyCodeObject* __Pyx_CreateCodeObjectForTraceback(
@@ -4285,8 +4694,250 @@ bad:
     Py_XDECREF(py_frame);
 }
 
+/* CIntFromPyVerify */
+#define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
+    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 0)
+#define __PYX_VERIFY_RETURN_INT_EXC(target_type, func_type, func_value)\
+    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 1)
+#define __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, exc)\
+    {\
+        func_type value = func_value;\
+        if (sizeof(target_type) < sizeof(func_type)) {\
+            if (unlikely(value != (func_type) (target_type) value)) {\
+                func_type zero = 0;\
+                if (exc && unlikely(value == (func_type)-1 && PyErr_Occurred()))\
+                    return (target_type) -1;\
+                if (is_unsigned && unlikely(value < zero))\
+                    goto raise_neg_overflow;\
+                else\
+                    goto raise_overflow;\
+            }\
+        }\
+        return (target_type) value;\
+    }
+
 /* CIntToPy */
-  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
+    const int neg_one = (int) -1, const_zero = (int) 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
+/* CIntFromPy */
+static CYTHON_INLINE size_t __Pyx_PyInt_As_size_t(PyObject *x) {
+    const size_t neg_one = (size_t) -1, const_zero = (size_t) 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(size_t) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(size_t, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (size_t) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (size_t) 0;
+                case  1: __PYX_VERIFY_RETURN_INT(size_t, digit, digits[0])
+                case 2:
+                    if (8 * sizeof(size_t) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) >= 2 * PyLong_SHIFT) {
+                            return (size_t) (((((size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(size_t) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) >= 3 * PyLong_SHIFT) {
+                            return (size_t) (((((((size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(size_t) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) >= 4 * PyLong_SHIFT) {
+                            return (size_t) (((((((((size_t)digits[3]) << PyLong_SHIFT) | (size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+                        }
+                    }
+                    break;
+            }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+#else
+            {
+                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+                if (unlikely(result < 0))
+                    return (size_t) -1;
+                if (unlikely(result == 1))
+                    goto raise_neg_overflow;
+            }
+#endif
+            if (sizeof(size_t) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(size_t, unsigned long, PyLong_AsUnsignedLong(x))
+#ifdef HAVE_LONG_LONG
+            } else if (sizeof(size_t) <= sizeof(unsigned PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(size_t, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+#endif
+            }
+        } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (size_t) 0;
+                case -1: __PYX_VERIFY_RETURN_INT(size_t, sdigit, (sdigit) (-(sdigit)digits[0]))
+                case  1: __PYX_VERIFY_RETURN_INT(size_t,  digit, +digits[0])
+                case -2:
+                    if (8 * sizeof(size_t) - 1 > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 2 * PyLong_SHIFT) {
+                            return (size_t) (((size_t)-1)*(((((size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if (8 * sizeof(size_t) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 2 * PyLong_SHIFT) {
+                            return (size_t) ((((((size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if (8 * sizeof(size_t) - 1 > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 3 * PyLong_SHIFT) {
+                            return (size_t) (((size_t)-1)*(((((((size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(size_t) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 3 * PyLong_SHIFT) {
+                            return (size_t) ((((((((size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if (8 * sizeof(size_t) - 1 > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 4 * PyLong_SHIFT) {
+                            return (size_t) (((size_t)-1)*(((((((((size_t)digits[3]) << PyLong_SHIFT) | (size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(size_t) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(size_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(size_t) - 1 > 4 * PyLong_SHIFT) {
+                            return (size_t) ((((((((((size_t)digits[3]) << PyLong_SHIFT) | (size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0])));
+                        }
+                    }
+                    break;
+            }
+#endif
+            if (sizeof(size_t) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(size_t, long, PyLong_AsLong(x))
+#ifdef HAVE_LONG_LONG
+            } else if (sizeof(size_t) <= sizeof(PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(size_t, PY_LONG_LONG, PyLong_AsLongLong(x))
+#endif
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            size_t val;
+            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (size_t) -1;
+        }
+    } else {
+        size_t val;
+        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
+        if (!tmp) return (size_t) -1;
+        val = __Pyx_PyInt_As_size_t(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to size_t");
+    return (size_t) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to size_t");
+    return (size_t) -1;
+}
+
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     const long neg_one = (long) -1, const_zero = (long) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
@@ -4316,30 +4967,8 @@ bad:
     }
 }
 
-/* CIntFromPyVerify */
-  #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\
-    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 0)
-#define __PYX_VERIFY_RETURN_INT_EXC(target_type, func_type, func_value)\
-    __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, 1)
-#define __PYX__VERIFY_RETURN_INT(target_type, func_type, func_value, exc)\
-    {\
-        func_type value = func_value;\
-        if (sizeof(target_type) < sizeof(func_type)) {\
-            if (unlikely(value != (func_type) (target_type) value)) {\
-                func_type zero = 0;\
-                if (exc && unlikely(value == (func_type)-1 && PyErr_Occurred()))\
-                    return (target_type) -1;\
-                if (is_unsigned && unlikely(value < zero))\
-                    goto raise_neg_overflow;\
-                else\
-                    goto raise_overflow;\
-            }\
-        }\
-        return (target_type) value;\
-    }
-
 /* CIntFromPy */
-  static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
+static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
     const long neg_one = (long) -1, const_zero = (long) 0;
     const int is_unsigned = neg_one > const_zero;
 #if PY_MAJOR_VERSION < 3
@@ -4528,7 +5157,7 @@ raise_neg_overflow:
 }
 
 /* CIntFromPy */
-  static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
+static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     const int neg_one = (int) -1, const_zero = (int) 0;
     const int is_unsigned = neg_one > const_zero;
 #if PY_MAJOR_VERSION < 3
@@ -4717,7 +5346,7 @@ raise_neg_overflow:
 }
 
 /* FastTypeChecks */
-  #if CYTHON_COMPILING_IN_CPYTHON
+#if CYTHON_COMPILING_IN_CPYTHON
 static int __Pyx_InBases(PyTypeObject *a, PyTypeObject *b) {
     while (a) {
         a = a->tp_base;
@@ -4789,7 +5418,7 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 #endif
 
 /* CheckBinaryVersion */
-  static int __Pyx_check_binary_version(void) {
+static int __Pyx_check_binary_version(void) {
     char ctversion[4], rtversion[4];
     PyOS_snprintf(ctversion, 4, "%d.%d", PY_MAJOR_VERSION, PY_MINOR_VERSION);
     PyOS_snprintf(rtversion, 4, "%s", Py_GetVersion());
@@ -4805,7 +5434,7 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 }
 
 /* InitStrings */
-  static int __Pyx_InitStrings(__Pyx_StringTabEntry *t) {
+static int __Pyx_InitStrings(__Pyx_StringTabEntry *t) {
     while (t->p) {
         #if PY_MAJOR_VERSION < 3
         if (t->is_unicode) {
