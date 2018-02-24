@@ -35,10 +35,19 @@ cdef extern from "../MCTDH/mctdhNode.h":
         const mctdhNode & Down(size_t i)
         int nChildren()
         int Address()
+        const PhysicalCoordinate& PhysCoord()
+        TensorDim TDim()
+
+cdef extern from "../MCTDH/PhysicalCoordinate.h":
+    cdef cppclass PhysicalCoordinate:
+        PhysicalCoordinate() except +
+        size_t Mode()
 
 cdef extern from "../QDlib/TensorDim.h":
     cdef cppclass TensorDim:
         TensorDim() except +
+        size_t getntensor()
+        size_t Active(size_t k)
 
 cdef class controlParameters:
     cdef ControlParameters *control_ptr
@@ -69,7 +78,7 @@ cdef class MctdhBasis:
       return self.basis_ptr.RegularizationDensity()
   def NPhysNodes(self):
       return self.basis_ptr.nPhysNodes()
-  cpdef MctdhNode PyMCTDHNode(self, i):
+  cpdef MctdhNode MCTDHnode(self, i):
       cdef const mctdhNode * node = &(self.basis_ptr.MCTDHNode(i))
       return PyMctdhNode_factory(node)
   def NmctdhNodes(self):
@@ -104,3 +113,29 @@ cdef class MctdhNode:
       return self.node_ptr.nChildren()
   def address(self):
       return self.node_ptr.Address()
+  cpdef PhysCoor phys_coor(self):
+      cdef const PhysicalCoordinate * phys = &(self.node_ptr.PhysCoord())
+      return PyPhysCoor_factory(phys)
+  #cpdef Tdim t_dim(self):
+      #cdef TensorDim * dim = self.node_ptr.TDim()
+      #return Tdim_factory(dim)
+      #return self.node_ptr.TDim()
+
+
+cdef object PyPhysCoor_factory(const PhysicalCoordinate * ptr):
+    cdef PhysCoor py_obj = PhysCoor()
+    py_obj.phys_ptr = ptr
+    return py_obj
+
+cdef object Tdim_factory(TensorDim * ptr):
+    cdef Tdim py_obj = Tdim()
+    py_obj.tdim_ptr = ptr
+    return py_obj
+
+cdef class PhysCoor:
+  cdef const PhysicalCoordinate * phys_ptr
+  def mode(self):
+    return self.phys_ptr.Mode()
+
+cdef class Tdim:
+  cdef TensorDim * tdim_ptr
