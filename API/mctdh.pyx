@@ -36,7 +36,7 @@ cdef extern from "../MCTDH/mctdhNode.h":
         int nChildren()
         int Address()
         const PhysicalCoordinate& PhysCoord()
-        TensorDim TDim()
+        const TensorDim TDim()
 
 cdef extern from "../MCTDH/PhysicalCoordinate.h":
     cdef cppclass PhysicalCoordinate:
@@ -48,6 +48,29 @@ cdef extern from "../QDlib/TensorDim.h":
         TensorDim() except +
         size_t getntensor()
         size_t Active(size_t k)
+
+cdef extern from "../Hamiltonians/Operators/CH3_quasiexact/CH3Quasiexact.h":
+    cdef cppclass CH3Quasiexact:
+        CH3Quasiexact() except +
+
+cdef extern from "../MCTDH/FortranOperator.h":
+    cdef cppclass FortranOperator:
+        FortranOperator() except +
+
+cdef extern from "../MCTDH/Hamiltonian.h":
+    cdef cppclass Hamiltonian:
+        Hamiltonian() except +
+        void InitCDVR(CH3Potential&)
+
+cdef extern from "../Hamiltonians/PESs/CH3_1/CH3Potential.h":
+    cdef cppclass CH3Potential:
+        CH3Potential() except +
+
+
+
+#################################
+# Basis and MCTDH Tree          #
+#################################
 
 cdef class controlParameters:
     cdef ControlParameters *control_ptr
@@ -116,10 +139,9 @@ cdef class MctdhNode:
   cpdef PhysCoor phys_coor(self):
       cdef const PhysicalCoordinate * phys = &(self.node_ptr.PhysCoord())
       return PyPhysCoor_factory(phys)
-  #cpdef Tdim t_dim(self):
-      #cdef TensorDim * dim = self.node_ptr.TDim()
-      #return Tdim_factory(dim)
-      #return self.node_ptr.TDim()
+  cpdef Tdim t_dim(self):
+      cdef TensorDim dim = self.node_ptr.TDim()
+      return Tdim_factory(dim)
 
 
 cdef object PyPhysCoor_factory(const PhysicalCoordinate * ptr):
@@ -127,9 +149,9 @@ cdef object PyPhysCoor_factory(const PhysicalCoordinate * ptr):
     py_obj.phys_ptr = ptr
     return py_obj
 
-cdef object Tdim_factory(TensorDim * ptr):
+cdef object Tdim_factory(TensorDim obj):
     cdef Tdim py_obj = Tdim()
-    py_obj.tdim_ptr = ptr
+    py_obj.tdim_ptr = obj
     return py_obj
 
 cdef class PhysCoor:
@@ -138,4 +160,52 @@ cdef class PhysCoor:
     return self.phys_ptr.Mode()
 
 cdef class Tdim:
-  cdef TensorDim * tdim_ptr
+  cdef TensorDim tdim_ptr   #KEIN POINTER, da cppclass mctdhNode: const TensorDim TDim() <- keine Referenzierung
+  def __cinit__(self):
+      self.tdim_ptr = TensorDim()
+  def GetnTensor(self):
+      return self.tdim_ptr.getntensor()
+  def active(self, i):
+      return self.tdim_ptr.Active(i)
+
+####################################
+#   Hamiltonian and PES            #
+####################################
+
+cdef class hamiltonian:
+    cdef Hamiltonian * ham_ptr
+    def __cinit__(self):
+        if type(self) is hamiltonian:
+          self.ham_ptr = new Hamiltonian()
+    def __dealloc__(self):
+        if type(self) is hamiltonian:
+            del self.ham_ptr
+    def init_cdvr(self, py_V_obj):
+        cdef CH3Potential * new_ch3pot_ptr = PyToCpp2(py_V_obj)
+        self.ham_ptr.InitCDVR(new_ch3pot_ptr[0])
+
+#cdef class fortranOperator(hamiltonian):
+#    cdef FortranOperator *forham_ptr
+#    def __cinit__(self):
+#        if type(self) is fortranOperator:
+#          self.forham_ptr = new FortranOperator()
+#          self.ham_ptr = <Hamiltonian*>self.forham_ptr
+#
+#    def __dealloc__(self):
+#        if type(self) is hamiltonian:
+#          del self.forham_ptr
+
+cdef class ch3Quasiexact(hamiltonian):
+    cdef CH3Quasiexact * ch3_ptr
+    def __cinit__(self):
+#      self.ch3_ptr = new CH3Quasiexact()
+      self.ham_ptr = <Hamiltonian*>self.ch3_ptr
+
+    #def __dealloc__(self):
+    #  del self.ch3_ptr
+
+cdef class ch3Potential:
+    cdef CH3Potential * ch3pot_ptr
+
+cdef CH3Potential * PyToCpp2(ch3Potential py_obj):
+    return py_obj.ch3pot_ptr
